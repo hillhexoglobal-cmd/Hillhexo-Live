@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HILLHEXO LTD - Global Trade Enabler</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="ai-agency-hero.css">
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Three.js Addons (r128 non-module scripts) -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+    
+    <!-- Animation and Noise Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+</head>
+<body>
+    <!-- Premium Logo Intro Preloader -->
+    <div id="intro-preloader">
+        <div class="preloader-columns">
+            <div class="preloader-col"></div>
+            <div class="preloader-col"></div>
+            <div class="preloader-col"></div>
+            <div class="preloader-col"></div>
+            <div class="preloader-col"></div>
+        </div>
+        <div class="preloader-logo-wrap">
+            <div class="preloader-logo">
+                <img src="images/logos.png" alt="Hillhexo Logo" class="preloader-logo-img">
+                <h1 class="preloader-logo-text">HILLHEXO<span class="gold-dot">.</span></h1>
+                <div class="glare-effect"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background concentric rings (fixed behind everything) -->
+    <div class="bg-rings">
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-3"></div>
+    </div>
+
+    <!-- 3D Canvas (fixed background) -->
+    <div id="canvas-container">
+        <canvas id="webglCanvas"></canvas>
+    </div>
+    <div class="dark-overlay" id="dark-overlay"></div>
+
+    <!-- Top Navigation Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <!-- Left Side: Logo -->
+            <div class="logo">
+                <img src="images/logos.png" alt="Hillhexo Logo">
+                <span class="logo-text">HILLHEX<span class="gold-text">O</span></span>
+            </div>
+            
+            <!-- Center: Capsule Nav Pill -->
+            <nav class="nav-capsule">
+                <a href="ai-agency-hero.html" class="active">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            
+            <!-- Right Side: CTA Button & Language Switcher -->
+            <div class="header-cta">
+                <!-- Language Switcher Dropdown -->
+                <div class="lang-switcher">
+                    <button class="btn-lang" id="langBtn" aria-haspopup="true" aria-expanded="false">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lang-globe">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span class="lang-current">EN</span>
+                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lang-arrow">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="lang-dropdown" id="langDropdown">
+                        <a href="#" class="lang-option active" data-lang="EN">English</a>
+                        <a href="#" class="lang-option" data-lang="NL">Dutch</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="btn-cta">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="cta-icon">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                    <span>Get Quote</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero UI Overlay (Split Layout) -->
+    <section class="split-hero">
+        <div class="hero-left">
+            <div class="hero-content">
+                <h1>CONNECTING THE WORLD,<br><span class="gold-text">DELIVERING EXCELLENCE</span></h1>
+                <p class="description">End-to-end logistics solutions tailored to your business. Fast, reliable and secure &ndash; across the globe.</p>
+                <div class="hero-explore-btn-wrap">
+                    <a href="#about" class="btn-explore" id="exploreBtn">
+                        <span>Explore More</span>
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="explore-arrow">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <polyline points="19 12 12 19 5 12"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-blank-right">
+            <!-- Reserved for 3D Canvas rendering on the right -->
+        </div>
+    </section>
+
+    <!-- Removed features and stats from absolute positioning here -->
+
+    <!-- Scrollable Content Sections -->
+    <main class="page-content">
+        
+        <!-- Logistics Auto-Scrolling Marquee -->
+        <div class="logistics-marquee">
+            <div class="marquee-track">
+                <div class="marquee-group">
+                    <span>Global Supply Chain</span> <span class="marquee-dot"></span>
+                    <span>Freight Forwarding</span> <span class="marquee-dot"></span>
+                    <span>Delivering Excellence</span> <span class="marquee-dot"></span>
+                    <span>Strategic Distribution</span> <span class="marquee-dot"></span>
+                    <span>Ocean & Air Cargo</span> <span class="marquee-dot"></span>
+                    <span>Next-Gen Logistics</span> <span class="marquee-dot"></span>
+                </div>
+                <div class="marquee-group" aria-hidden="true">
+                    <span>Global Supply Chain</span> <span class="marquee-dot"></span>
+                    <span>Freight Forwarding</span> <span class="marquee-dot"></span>
+                    <span>Delivering Excellence</span> <span class="marquee-dot"></span>
+                    <span>Strategic Distribution</span> <span class="marquee-dot"></span>
+                    <span>Ocean & Air Cargo</span> <span class="marquee-dot"></span>
+                    <span>Next-Gen Logistics</span> <span class="marquee-dot"></span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- About Section -->
+        <section id="about" class="mid-section section-light">
+            <div class="section-container">
+                <div class="section-header-modern">
+                    <span class="section-badge">WHO WE ARE</span>
+                    <h2>MISSION <span class="gold-text">&</span> VISION</h2>
+                    <p class="subtitle">Transforming global trade by making high-potential products accessible, scalable, and successful across borders.</p>
+                </div>
+                <!-- Massive Center Hanging Container -->
+                <div class="about-hanging-row scroll-reveal">
+                    <div class="about-center-container">
+                        <img src="images/container.png" alt="Hanging Container" class="hanging-container-img">
+                    </div>
+                </div>
+
+                <div class="about-grid scroll-reveal">
+                    <!-- Left: Our Vision -->
+                    <div class="about-card card-reveal">
+                        <div class="card-watermark">01</div>
+                        <h3>Our Vision</h3>
+                        <p>To become a leading global trade enabler and product development powerhouse connecting emerging products with high-demand markets.</p>
+                    </div>
+                    <!-- Right: The Concept -->
+                    <div class="about-card card-reveal">
+                        <div class="card-watermark">02</div>
+                        <h3>The Concept</h3>
+                        <p>HILLHEXO LTD acts as a bridge between product origin and market demand. We identify products with strong potential, facilitate logistics, build supply chains, and create or expand markets.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="mid-section section-dark">
+            <div class="section-container">
+                <div class="section-header-modern">
+                    <span class="section-badge">CORE CAPABILITIES</span>
+                    <h2>OUR BUSINESS MODELS</h2>
+                    <p class="subtitle">We deliver complete global trade solutions under one roof.</p>
+                </div>
+                <div class="services-grid scroll-reveal">
+                    <div class="services-card card-reveal">
+                        <div class="card-icon-container">
+                            <div class="glow-shape shape-circle">
+                                <svg viewBox="0 0 100 100" class="icon-svg">
+                                    <circle cx="50" cy="50" r="35" stroke="#1d438a" stroke-width="2" fill="none" stroke-dasharray="10 5" />
+                                </svg>
+                            </div>
+                        </div>
+                        <h3>Support Services</h3>
+                        <p>Logistics & Trade Facilitation. End-to-end shipping, customs, supplier coordination, and warehousing.</p>
+                    </div>
+                    <div class="services-card card-reveal">
+                        <div class="card-icon-container">
+                            <div class="glow-shape shape-triangle">
+                                <svg viewBox="0 0 100 100" class="icon-svg">
+                                    <polygon points="50,15 15,85 85,85" stroke="#1d438a" stroke-width="2" fill="none" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                        <h3>Inside Dealer</h3>
+                        <p>Market-Based Trade Brokerage. We conduct global market research, connect suppliers, and act as a third-party dealer.</p>
+                    </div>
+                    <div class="services-card card-reveal">
+                        <div class="card-icon-container">
+                            <div class="glow-shape shape-square">
+                                <svg viewBox="0 0 100 100" class="icon-svg">
+                                    <rect x="20" y="20" width="60" height="60" rx="10" stroke="#1d438a" stroke-width="2" fill="none" transform="rotate(45 50 50)" />
+                                </svg>
+                            </div>
+                        </div>
+                        <h3>Direct Dealer</h3>
+                        <p>Brand Ownership & Market Creation. We select high-potential products, create brands, and build market presence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workflow Section (Serpentine Timeline) -->
+        <section id="workflow" class="mid-section section-light">
+            <div class="section-container">
+                <div class="section-header-modern scroll-reveal">
+                    <span class="section-badge">OPERATIONS</span>
+                    <h2>WORKING PROTOCOL</h2>
+                    <p class="subtitle">Our end-to-end operational workflow, engineered for efficiency and scale.</p>
+                </div>
+
+                <div class="timeline-serpentine-container" id="serpentine-container">
+                    <!-- Steps wrapper — SVG height is scoped here only -->
+                    <div class="timeline-steps-only">
+                        <!-- Mobile straight vertical line -->
+                        <div class="timeline-mobile-line"></div>
+
+                        <!-- Desktop S-Curve SVG path -->
+                        <div class="serpentine-svg-wrap">
+                            <svg class="serpentine-svg" viewBox="0 0 200 1600" preserveAspectRatio="none">
+                                <path class="serpentine-path"
+                                    d="M 100 0
+                                       C 100 60, 100 90, 100 100
+                                       C 155 170, 165 230, 100 300
+                                       C 35 370, 35 430, 100 500
+                                       C 165 570, 165 630, 100 700
+                                       C 35 770, 35 830, 100 900
+                                       C 165 970, 165 1030, 100 1100
+                                       C 35 1170, 35 1230, 100 1300
+                                       C 165 1370, 165 1430, 100 1500
+                                       C 100 1550, 100 1580, 100 1600"
+                                />
+                            </svg>
+                        </div>
+
+                        <!-- Step 01 — LEFT card -->
+                        <div class="timeline-step-row" data-step="1">
+                            <div class="timeline-card card-left">
+                                <span class="step-num">01</span>
+                                <h3>Product Identification</h3>
+                                <p>Research market trends and identify high-potential product gaps across regions.</p>
+                            </div>
+                            <div class="timeline-node-wrapper">
+                                <div class="timeline-node-icon">
+                                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+                                </div>
+                            </div>
+                            <div class="card-empty"></div>
+                        </div>
+
+                        <!-- Step 02 — RIGHT card -->
+                        <div class="timeline-step-row" data-step="2">
+                            <div class="card-empty"></div>
+                            <div class="timeline-node-wrapper">
+                                <div class="timeline-node-icon">
+                                    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M12 13v9m-4-4l4 4 4-4"/></svg>
+                                </div>
+                            </div>
+                            <div class="timeline-card card-right">
+                                <span class="step-num">02</span>
+                                <h3>Supplier Verification</h3>
+                                <p>Validate the credibility, production capacity, quality controls, and compliance of manufacturers.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 03 — LEFT card -->
+                        <div class="timeline-step-row" data-step="3">
+                            <div class="timeline-card card-left">
+                                <span class="step-num">03</span>
+                                <h3>Market Validation</h3>
+                                <p>Engage direct target buyers, map competitive landscapes, and analyze market price tolerance.</p>
+                            </div>
+                            <div class="timeline-node-wrapper">
+                                <div class="timeline-node-icon">
+                                    <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+                                </div>
+                            </div>
+                            <div class="card-empty"></div>
+                        </div>
+
+                        <!-- Step 04 — RIGHT card -->
+                        <div class="timeline-step-row" data-step="4">
+                            <div class="card-empty"></div>
+                            <div class="timeline-node-wrapper">
+                                <div class="timeline-node-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M8 16l2-4-3-3 4-4 3 2 2-2 2 5-4 1v5"/><rect x="6" y="16" width="12" height="2" rx="1"/></svg>
+                                </div>
+                            </div>
+                            <div class="timeline-card card-right">
+                                <span class="step-num">04</span>
+                                <h3>Business Model Decision</h3>
+                                <p>Choose the optimal strategy: Support Services, Inside Dealer brokerage, or Direct Brand Ownership.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 05 — LEFT card -->
+                        <div class="timeline-step-row" data-step="5">
+                            <div class="timeline-card card-left">
+                                <span class="step-num">05</span>
+                                <h3>Deal Structuring</h3>
+                                <p>Establish pricing models, secure long-term contracts, and finalize payment and commercial terms.</p>
+                            </div>
+                            <div class="timeline-node-wrapper">
+                                <div class="timeline-node-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+                                </div>
+                            </div>
+                            <div class="card-empty"></div>
+                        </div>
+
+                        <!-- Step 06 — RIGHT card -->
+                        <div class="timeline-step-row" data-step="6">
+                            <div class="card-empty"></div>
+                            <div class="timeline-node-wrapper">
+                                <div class="timeline-node-icon">
+                                    <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                                </div>
+                            </div>
+                            <div class="timeline-card card-right">
+                                <span class="step-num">06</span>
+                                <h3>Logistics Execution</h3>
+                                <p>Execute seamless shipping routes, freight consolidation, warehousing, and customs clearance.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 07 — LEFT card -->
+                        <div class="timeline-step-row" data-step="7">
+                            <div class="timeline-card card-left">
+                                <span class="step-num">07</span>
+                                <h3>Sales &amp; Distribution</h3>
+                                <p>Activate sales networks, expand wholesale or retail channels, and accelerate transactional volume.</p>
+                            </div>
+                            <div class="timeline-node-wrapper">
+                                <div class="timeline-node-icon">
+                                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                                </div>
+                            </div>
+                            <div class="card-empty"></div>
+                        </div>
+
+                        <!-- Step 08 — RIGHT card -->
+                        <div class="timeline-step-row" data-step="8">
+                            <div class="card-empty"></div>
+                            <div class="timeline-node-wrapper">
+                                <div class="timeline-node-icon">
+                                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                </div>
+                            </div>
+                            <div class="timeline-card card-right">
+                                <span class="step-num">08</span>
+                                <h3>Brand Development</h3>
+                                <p>Establish brand visual identity, premium packaging, and scale digital and retail footprint.</p>
+                            </div>
+                        </div>
+                    </div><!-- /.timeline-steps-only -->
+
+                    <!-- Trust Features Grid (outside SVG scope) -->
+                    <div class="workflow-features-grid">
+                        <div class="workflow-feature-card scroll-reveal">
+                            <div class="wf-icon-wrap">
+                                <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                            </div>
+                            <h4>Data-Driven Decisions</h4>
+                            <p>Every step is backed by real data and market insights.</p>
+                        </div>
+                        <div class="workflow-feature-card scroll-reveal">
+                            <div class="wf-icon-wrap">
+                                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </div>
+                            <h4>Risk Mitigation</h4>
+                            <p>Robust verification and compliance at every stage.</p>
+                        </div>
+                        <div class="workflow-feature-card scroll-reveal">
+                            <div class="wf-icon-wrap">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            </div>
+                            <h4>Operational Excellence</h4>
+                            <p>Streamlined processes for maximum efficiency.</p>
+                        </div>
+                        <div class="workflow-feature-card scroll-reveal">
+                            <div class="wf-icon-wrap">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                            </div>
+                            <h4>Global Scalability</h4>
+                            <p>Built to scale across markets and categories.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Markets & Industries Section (Sticky Split Layout) -->
+        <section id="markets" class="mid-section section-light">
+            <div class="section-container">
+                <div class="markets-split-layout">
+                    <!-- Left Side: Sticky Header info -->
+                    <div class="markets-text-col">
+                        <span class="section-badge scroll-reveal">GLOBAL NETWORK</span>
+                        <h2 class="scroll-reveal">MARKETS & INDUSTRIES</h2>
+                        <p class="subtitle scroll-reveal">We deploy global reach paired with deep, specialized industry vertical expertise.</p>
+                    </div>
+                    <!-- Right Side: Scrolling Vertical Images -->
+                    <div class="markets-gallery-col scroll-reveal">
+                        <div class="markets-vertical-stack">
+                            <div class="vertical-img-wrapper">
+                                <img src="images/1.webp" alt="Global Network 1">
+                            </div>
+                            <div class="vertical-img-wrapper">
+                                <img src="images/2.webp" alt="Global Network 2">
+                            </div>
+                            <div class="vertical-img-wrapper">
+                                <img src="images/3.webp" alt="Global Network 3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Request a Quote Section -->
+        <section class="request-quote-section mid-section section-light">
+            <!-- Soft wavy top divider lines -->
+            <div class="quote-waves-bg" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
+                    <path class="wave-line wl-1" d="M0,20 C240,40 480,0  720,20 S1200,40 1440,20"/>
+                    <path class="wave-line wl-2" d="M0,30 C240,50 480,10 720,30 S1200,50 1440,30"/>
+                    <path class="wave-line wl-3" d="M0,40 C240,60 480,20 720,40 S1200,60 1440,40"/>
+                    <path class="wave-line wl-4" d="M0,50 C240,70 480,30 720,50 S1200,70 1440,50"/>
+                    <path class="wave-line wl-5" d="M0,60 C240,80 480,40 720,60 S1200,80 1440,60"/>
+                </svg>
+            </div>
+            <div class="section-container">
+                <div class="quote-split-layout">
+                    <!-- Left Column: Content -->
+                    <div class="quote-text-col scroll-reveal">
+                        <span class="section-badge">GET IN TOUCH</span>
+                        <h2>Request a Quote</h2>
+                        <p class="subtitle">We plan every shipment in advance to ensure accurate routing, secure handling, and on-time delivery worldwide.</p>
+                        <a href="tel:+917510343446" class="btn-phone-animated">
+                            <span class="btn-phone-icon-wrap">
+                                <!-- Phone icon (default) -->
+                                <svg class="icon-phone" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                                <!-- Arrow icon (hover) -->
+                                <svg class="icon-connect" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </span>
+                            <span class="btn-phone-text-wrap">
+                                <span class="phone-default">+91 751 034 3446</span>
+                                <span class="phone-hover">Connect Us</span>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- Right Column: 3D Rotating Globe -->
+                    <div class="quote-globe-col scroll-reveal">
+                        <div class="quote-globe-container" id="quote-globe-container"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REDESIGNED MEGA FOOTER -->
+        <footer class="mega-footer">
+            <!-- Fixed background watermark text with metallic shining outline -->
+            <div class="footer-watermark-fixed">HILLHEXO</div>
+            
+            <div class="footer-content-wrapper">
+                <div class="footer-main-grid">
+                    <!-- Left side: Brand area -->
+                    <div class="footer-left-col">
+                        <div class="footer-brand-area">
+                            <div class="footer-logo">
+                                <img src="images/logos.png" alt="Hillhexo Logo">
+                                <h2>HILLHEXO<span>LTD</span></h2>
+                            </div>
+                            <p class="footer-desc">Delivering smart logistics solutions<br>that connect businesses to the world.<br>Fast, reliable, and always on-time.</p>
+                        </div>
+                    </div>
+
+                    <!-- Right side: Navigation stack & Subscribe Form -->
+                    <div class="footer-right-col">
+                        <div class="footer-nav-container">
+                            <span class="footer-nav-title">Navigation</span>
+                            <nav class="footer-nav-stack">
+                                <a href="ai-agency-hero.html">HOME</a>
+                                <a href="about.html">ABOUT US</a>
+                                <a href="services.html">SERVICES</a>
+                                <a href="contact.html">CONTACT</a>
+                            </nav>
+                        </div>
+                        
+                        <!-- Newsletter Subscription Block -->
+                        <div class="footer-subscribe-section">
+                            <p class="subscribe-text">Subscribe to be in touch with latest updates.</p>
+                            <form class="footer-subscribe-form" onsubmit="event.preventDefault();">
+                                <div class="subscribe-input-wrapper">
+                                    <input type="email" placeholder="Email address" required class="subscribe-input">
+                                    <button type="submit" class="subscribe-btn" aria-label="Subscribe">
+                                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom-divider"></div>
+
+                <!-- Legal/Copyright bottom row -->
+                <div class="footer-legal">
+                    <div class="legal-left">© 2026 HILLHEXO LTD. All rights reserved.</div>
+                    <div class="legal-right">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="map-data.js"></script>
+    <script src="truck-data.js"></script>
+    <script src="ai-agency-hero.js"></script>
+    <script src="globe-footer.js"></script>
+    <script>
+        // Preloader Intro Controller
+        document.addEventListener('DOMContentLoaded', () => {
+            const preloader = document.getElementById('intro-preloader');
+            if (!preloader) return;
+
+            // Check if navigation was internal to make page navigations fast
+            const isInternal = sessionStorage.getItem('hillhexo_navigated_internally');
+            sessionStorage.removeItem('hillhexo_navigated_internally');
+
+            if (isInternal === 'true') {
+                preloader.style.display = 'none';
+                return;
+            }
+            
+            // 1. Show the logo after a tiny delay
+            setTimeout(() => {
+                preloader.classList.add('show-logo');
+            }, 300);
+
+            // 2. Trigger the glaring shine scan across the logo
+            setTimeout(() => {
+                preloader.classList.add('glare-active');
+            }, 1100);
+
+            // 3. Hide the logo
+            setTimeout(() => {
+                preloader.classList.add('hide-logo');
+            }, 2800);
+
+            // 4. Stagger-drop the column bars to reveal the hero
+            setTimeout(() => {
+                preloader.classList.add('animate-drop');
+            }, 3300);
+
+            // 5. Remove preloader from document flow entirely
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 4600);
+        });
+
+        // Scroll Animation Observer & Sticky Scroll Controller
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Viewport entrance animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    } else {
+                        // Remove in-view so animation replays every time user scrolls back
+                        entry.target.classList.remove('in-view');
+                    }
+                });
+            }, observerOptions);
+
+            const elementsToReveal = document.querySelectorAll(
+                '.scroll-reveal, .card-reveal, .timeline-item, .section-header-modern, .sticky-scroll-block, .timeline-step-row, .workflow-feature-card, .timeline-serpentine-container'
+            );
+            elementsToReveal.forEach(el => {
+                observer.observe(el);
+            });
+
+            // Header Scroll class toggler
+            const header = document.querySelector('.main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 40) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Split text into letters for typing/writing animation
+            const h1 = document.querySelector('.hero-content h1');
+            if (h1) {
+                const originalHTML = h1.innerHTML;
+                const lines = originalHTML.split('<br>');
+                let wrappedHTML = '';
+                
+                lines.forEach((line, lineIdx) => {
+                    if (lineIdx > 0) wrappedHTML += '<br>';
+                    
+                    if (line.includes('class="gold-text"')) {
+                        const spanMatch = line.match(/<span class="gold-text">(.*?)<\/span>/);
+                        if (spanMatch) {
+                            const spanText = spanMatch[1];
+                            wrappedHTML += '<span class="gold-text">';
+                            for (let char of spanText) {
+                                if (char === ' ') {
+                                    wrappedHTML += ' ';
+                                } else {
+                                    wrappedHTML += `<span class="letter">${char}</span>`;
+                                }
+                            }
+                            wrappedHTML += '</span>';
+                        }
+                    } else {
+                        for (let char of line) {
+                            if (char === ' ') {
+                                wrappedHTML += ' ';
+                            } else {
+                                wrappedHTML += `<span class="letter">${char}</span>`;
+                            }
+                        }
+                    }
+                });
+                
+                h1.innerHTML = wrappedHTML;
+                
+                // Animate letters smoothly
+                anime({
+                    targets: '.hero-content h1 .letter',
+                    opacity: [0, 1],
+                    translateY: [15, 0],
+                    easing: 'easeOutExpo',
+                    duration: 1200,
+                    delay: anime.stagger(30)
+                });
+            }
+
+            // Language Switcher Dropdown Interaction
+            const langSwitcher = document.querySelector('.lang-switcher');
+            const langBtn = document.getElementById('langBtn');
+            const langCurrent = document.querySelector('.lang-current');
+            const langOptions = document.querySelectorAll('.lang-option');
+
+            if (langBtn && langSwitcher) {
+                langBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    langSwitcher.classList.toggle('open');
+                    const isOpen = langSwitcher.classList.contains('open');
+                    langBtn.setAttribute('aria-expanded', isOpen);
+                });
+
+                langOptions.forEach(opt => {
+                    opt.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        const selectedLang = opt.getAttribute('data-lang');
+                        langCurrent.textContent = selectedLang;
+
+                        langOptions.forEach(o => o.classList.remove('active'));
+                        opt.classList.add('active');
+
+                        langSwitcher.classList.remove('open');
+                        langBtn.setAttribute('aria-expanded', 'false');
+                    });
+                });
+
+                document.addEventListener('click', () => {
+                    langSwitcher.classList.remove('open');
+                    langBtn.setAttribute('aria-expanded', 'false');
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>
