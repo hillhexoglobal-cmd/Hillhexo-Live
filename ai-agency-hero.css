@@ -2820,6 +2820,11 @@ canvas#webglCanvas {
     flex-shrink: 0;
 }
 
+.info-text {
+    min-width: 0;
+    flex: 1;
+}
+
 .info-text h4 {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 1.2rem;
@@ -2831,11 +2836,27 @@ canvas#webglCanvas {
     font-size: 0.95rem;
     color: #475569;
     line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .contact-form-wrapper {
     display: flex;
     flex-direction: column;
+}
+.info-card {
+    background: #ffffff;
+    border: 1px solid rgba(29, 67, 138, 0.12);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    box-shadow: 0 4px 20px rgba(29, 67, 138, 0.06);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .premium-form {
