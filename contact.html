@@ -70,36 +70,69 @@
                 <a href="about.html">About Us</a>
                 <a href="services.html">Services</a>
                 <a href="contact.html" class="active">Contact</a>
-            </nav>
-            
-            <!-- Right Side: CTA Button & Language Switcher -->
-            <div class="header-cta">
-                <!-- Language Switcher Dropdown -->
-                <div class="lang-switcher">
-                    <button class="btn-lang" id="langBtn" aria-haspopup="true" aria-expanded="false">
-                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lang-globe">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="2" y1="12" x2="22" y2="12"></line>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                        </svg>
-                        <span class="lang-current">EN</span>
-                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lang-arrow">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </button>
-                    <div class="lang-dropdown" id="langDropdown">
-                        <a href="#" class="lang-option active" data-lang="EN">English</a>
-                        <a href="#" class="lang-option" data-lang="NL">Dutch</a>
-                    </div>
-                </div>
-
-                <a href="contact.html" class="btn-cta">
+                <!-- Mobile Only CTA Button -->
+                <a href="contact.html" class="btn-cta mobile-only" style="margin-top: 1.5rem; display: none;">
                     <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="cta-icon">
                         <line x1="22" y1="2" x2="11" y2="13"></line>
                         <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                     </svg>
                     <span>Get Quote</span>
                 </a>
+
+                <!-- Mobile Only Language Switcher -->
+                <div class="lang-switcher mobile-only" style="margin-top: 1.5rem; justify-content: center; width: 100%; display: none;">
+                    <button class="btn-lang" aria-haspopup="true" aria-expanded="false">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lang-globe">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span class="lang-current">EN</span>
+                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lang-arrow">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="lang-dropdown">
+                        <a href="#" class="lang-option active" data-lang="EN">English</a>
+                        <a href="#" class="lang-option" data-lang="NL">Dutch</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- Right Side: CTA Button -->
+            <div class="header-cta">
+                <a href="contact.html" class="btn-cta desktop-only">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="cta-icon">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                    <span>Get Quote</span>
+                </a>
+
+                <!-- Desktop Language Switcher -->
+                <div class="lang-switcher desktop-only">
+                    <button class="btn-lang" aria-haspopup="true" aria-expanded="false">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lang-globe">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span class="lang-current">EN</span>
+                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lang-arrow">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="lang-dropdown">
+                        <a href="#" class="lang-option active" data-lang="EN">English</a>
+                        <a href="#" class="lang-option" data-lang="NL">Dutch</a>
+                    </div>
+                </div>
+                
+                <button class="hamburger-menu" id="hamburgerMenu" aria-label="Toggle Menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
             </div>
         </div>
     </header>
@@ -332,40 +365,48 @@
             });
 
             // Language Switcher Dropdown Interaction
-            const langSwitcher = document.querySelector('.lang-switcher');
-            const langBtn = document.getElementById('langBtn');
-            const langCurrent = document.querySelector('.lang-current');
-            const langOptions = document.querySelectorAll('.lang-option');
-
-            if (langBtn && langSwitcher) {
-                langBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    langSwitcher.classList.toggle('open');
-                    const isOpen = langSwitcher.classList.contains('open');
-                    langBtn.setAttribute('aria-expanded', isOpen);
-                });
-
-                langOptions.forEach(opt => {
-                    opt.addEventListener('click', (e) => {
-                        e.preventDefault();
+            const langSwitchers = document.querySelectorAll('.lang-switcher');
+            langSwitchers.forEach(langSwitcher => {
+                const langBtn = langSwitcher.querySelector('.btn-lang');
+                const langOptions = langSwitcher.querySelectorAll('.lang-option');
+                if (langBtn) {
+                    langBtn.addEventListener('click', (e) => {
                         e.stopPropagation();
-
-                        const selectedLang = opt.getAttribute('data-lang');
-                        langCurrent.textContent = selectedLang;
-
-                        langOptions.forEach(o => o.classList.remove('active'));
-                        opt.classList.add('active');
-
-                        langSwitcher.classList.remove('open');
-                        langBtn.setAttribute('aria-expanded', 'false');
+                        langSwitcher.classList.toggle('open');
+                        const isOpen = langSwitcher.classList.contains('open');
+                        langBtn.setAttribute('aria-expanded', isOpen);
                     });
-                });
 
-                document.addEventListener('click', () => {
+                    langOptions.forEach(opt => {
+                        opt.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+
+                            const selectedLang = opt.getAttribute('data-lang');
+                            document.querySelectorAll('.lang-current').forEach(el => el.textContent = selectedLang);
+
+                            document.querySelectorAll('.lang-option').forEach(o => {
+                                if (o.getAttribute('data-lang') === selectedLang) {
+                                    o.classList.add('active');
+                                } else {
+                                    o.classList.remove('active');
+                                }
+                            });
+
+                            langSwitcher.classList.remove('open');
+                            langBtn.setAttribute('aria-expanded', 'false');
+                        });
+                    });
+                }
+            });
+
+            document.addEventListener('click', () => {
+                langSwitchers.forEach(langSwitcher => {
                     langSwitcher.classList.remove('open');
-                    langBtn.setAttribute('aria-expanded', 'false');
+                    const langBtn = langSwitcher.querySelector('.btn-lang');
+                    if (langBtn) langBtn.setAttribute('aria-expanded', 'false');
                 });
-            }
+            });
         });
     </script>
 </body>

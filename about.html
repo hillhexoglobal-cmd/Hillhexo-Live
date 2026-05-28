@@ -70,36 +70,69 @@
                 <a href="about.html" class="active">About Us</a>
                 <a href="services.html">Services</a>
                 <a href="contact.html">Contact</a>
-            </nav>
-            
-            <!-- Right Side: CTA Button & Language Switcher -->
-            <div class="header-cta">
-                <!-- Language Switcher Dropdown -->
-                <div class="lang-switcher">
-                    <button class="btn-lang" id="langBtn" aria-haspopup="true" aria-expanded="false">
-                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lang-globe">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="2" y1="12" x2="22" y2="12"></line>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                        </svg>
-                        <span class="lang-current">EN</span>
-                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lang-arrow">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </button>
-                    <div class="lang-dropdown" id="langDropdown">
-                        <a href="#" class="lang-option active" data-lang="EN">English</a>
-                        <a href="#" class="lang-option" data-lang="NL">Dutch</a>
-                    </div>
-                </div>
-
-                <a href="contact.html" class="btn-cta">
+                <!-- Mobile Only CTA Button -->
+                <a href="contact.html" class="btn-cta mobile-only" style="margin-top: 1.5rem; display: none;">
                     <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="cta-icon">
                         <line x1="22" y1="2" x2="11" y2="13"></line>
                         <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                     </svg>
                     <span>Get Quote</span>
                 </a>
+
+                <!-- Mobile Only Language Switcher -->
+                <div class="lang-switcher mobile-only" style="margin-top: 1.5rem; justify-content: center; width: 100%; display: none;">
+                    <button class="btn-lang" aria-haspopup="true" aria-expanded="false">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lang-globe">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span class="lang-current">EN</span>
+                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lang-arrow">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="lang-dropdown">
+                        <a href="#" class="lang-option active" data-lang="EN">English</a>
+                        <a href="#" class="lang-option" data-lang="NL">Dutch</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- Right Side: CTA Button -->
+            <div class="header-cta">
+                <a href="contact.html" class="btn-cta desktop-only">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="cta-icon">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                    <span>Get Quote</span>
+                </a>
+
+                <!-- Desktop Language Switcher -->
+                <div class="lang-switcher desktop-only">
+                    <button class="btn-lang" aria-haspopup="true" aria-expanded="false">
+                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lang-globe">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span class="lang-current">EN</span>
+                        <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="lang-arrow">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="lang-dropdown">
+                        <a href="#" class="lang-option active" data-lang="EN">English</a>
+                        <a href="#" class="lang-option" data-lang="NL">Dutch</a>
+                    </div>
+                </div>
+                
+                <button class="hamburger-menu" id="hamburgerMenu" aria-label="Toggle Menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
             </div>
         </div>
     </header>
@@ -116,8 +149,114 @@
     <!-- Scrollable Content Sections -->
     <main class="page-content" style="margin-top: 5vh;">
         
+        <!-- Mission & Vision Section (Light) -->
+        <section class="mid-section section-light">
+            <div class="section-container">
+                <div class="text-center" style="max-width: 800px; margin: 0 auto 4rem auto; text-align: center;">
+                    <span class="section-badge scroll-reveal">OUR PURPOSE</span>
+                    <h2 class="scroll-reveal" style="font-size: 2.8rem; margin-bottom: 1.5rem;">Mission & Vision</h2>
+                    <p class="scroll-reveal" style="font-size: 1.15rem; color: #555; line-height: 1.6;">
+                        <strong>Mission:</strong> To transform global trade by making high-potential products accessible, scalable, and successful across borders.<br><br>
+                        <strong>Vision:</strong> To become a leading global trade enabler and product development powerhouse connecting emerging products with high-demand markets.
+                    </p>
+                </div>
+                
+                <div class="text-center scroll-reveal" style="background: rgba(0,0,0,0.02); padding: 3rem; border-radius: 20px; border: 1px solid rgba(0,0,0,0.05); max-width: 900px; margin: 0 auto; text-align: center;">
+                    <h3 style="color: #1d438a; margin-bottom: 1rem; font-size: 1.8rem;">Business Concept</h3>
+                    <p style="font-size: 1.1rem; color: #555; line-height: 1.7;">
+                        HILLHEXO LTD acts as a bridge between product origin and market demand. We identify products with strong potential, facilitate logistics and compliance, build supply chains, create or expand markets, and develop brands when necessary.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Market Opportunity & Industries (Dark) -->
+        <section class="mid-section section-dark">
+            <div class="section-container">
+                <div class="text-center scroll-reveal" style="margin-bottom: 4rem; text-align: center;">
+                    <span class="section-badge">GLOBAL REACH</span>
+                    <h2>Market Opportunity</h2>
+                    <p style="color: #94a3b8; max-width: 700px; margin: 1.5rem auto 0 auto; font-size: 1.1rem; line-height: 1.6;">
+                        Global supply is increasing, but market access remains fragmented. We leverage government-free trade deals to bring better opportunities to the global market, solving failures caused by poor logistics, weak branding, or entry strategy.
+                    </p>
+                </div>
+
+                <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div class="service-card dark-card scroll-reveal">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        </div>
+                        <h3>Target Markets</h3>
+                        <p style="color: #94a3b8; line-height: 1.6;">We focus on the UK, European Union, and India, while actively exploring emerging markets across Asia, Africa, and South America.</p>
+                    </div>
+                    
+                    <div class="service-card dark-card scroll-reveal" style="transition-delay: 100ms;">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                        </div>
+                        <h3>Industries in Focus</h3>
+                        <p style="color: #94a3b8; line-height: 1.6;">Consumer goods, agriculture products, industrial materials, sustainable products, tech accessories, and fashion.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competitive Advantage (Light) -->
+        <section class="mid-section section-light">
+            <div class="section-container">
+                <div class="text-center scroll-reveal" style="margin-bottom: 4rem; text-align: center;">
+                    <span class="section-badge">WHY CHOOSE US</span>
+                    <h2 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Our Competitive Advantage</h2>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card scroll-reveal">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                        </div>
+                        <h3>Hybrid Model</h3>
+                        <p style="color: #666; line-height: 1.6;">A unique combination of logistics support, smart trading, and direct brand creation under one roof.</p>
+                    </div>
+
+                    <div class="service-card scroll-reveal" style="transition-delay: 100ms;">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                        </div>
+                        <h3>Market Intelligence</h3>
+                        <p style="color: #666; line-height: 1.6;">Data-driven product selection ensures we only scale products with high demand and low supply gaps.</p>
+                    </div>
+
+                    <div class="service-card scroll-reveal" style="transition-delay: 200ms;">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        </div>
+                        <h3>Flexibility</h3>
+                        <p style="color: #666; line-height: 1.6;">We successfully adapt our models to work with both emerging, small suppliers and large-scale enterprises.</p>
+                    </div>
+
+                    <div class="service-card scroll-reveal" style="transition-delay: 300ms;">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16v-2"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                        </div>
+                        <h3>End-to-End Control</h3>
+                        <p style="color: #666; line-height: 1.6;">From initial sourcing to final market delivery, we manage the full supply chain to guarantee success.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Request a Quote Section -->
         <section class="request-quote-section mid-section section-light">
+            <!-- Soft wavy top divider lines -->
+            <div class="quote-waves-bg" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
+                    <path class="wave-line wl-1" d="M0,20 C240,40 480,0  720,20 S1200,40 1440,20"/>
+                    <path class="wave-line wl-2" d="M0,30 C240,50 480,10 720,30 S1200,50 1440,30"/>
+                    <path class="wave-line wl-3" d="M0,40 C240,60 480,20 720,40 S1200,60 1440,40"/>
+                    <path class="wave-line wl-4" d="M0,50 C240,70 480,30 720,50 S1200,70 1440,50"/>
+                    <path class="wave-line wl-5" d="M0,60 C240,80 480,40 720,60 S1200,80 1440,60"/>
+                </svg>
+            </div>
             <div class="section-container">
                 <div class="quote-split-layout">
                     <!-- Left Column: Content -->
@@ -266,40 +405,48 @@
             });
 
             // Language Switcher Dropdown Interaction
-            const langSwitcher = document.querySelector('.lang-switcher');
-            const langBtn = document.getElementById('langBtn');
-            const langCurrent = document.querySelector('.lang-current');
-            const langOptions = document.querySelectorAll('.lang-option');
-
-            if (langBtn && langSwitcher) {
-                langBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    langSwitcher.classList.toggle('open');
-                    const isOpen = langSwitcher.classList.contains('open');
-                    langBtn.setAttribute('aria-expanded', isOpen);
-                });
-
-                langOptions.forEach(opt => {
-                    opt.addEventListener('click', (e) => {
-                        e.preventDefault();
+            const langSwitchers = document.querySelectorAll('.lang-switcher');
+            langSwitchers.forEach(langSwitcher => {
+                const langBtn = langSwitcher.querySelector('.btn-lang');
+                const langOptions = langSwitcher.querySelectorAll('.lang-option');
+                if (langBtn) {
+                    langBtn.addEventListener('click', (e) => {
                         e.stopPropagation();
-
-                        const selectedLang = opt.getAttribute('data-lang');
-                        langCurrent.textContent = selectedLang;
-
-                        langOptions.forEach(o => o.classList.remove('active'));
-                        opt.classList.add('active');
-
-                        langSwitcher.classList.remove('open');
-                        langBtn.setAttribute('aria-expanded', 'false');
+                        langSwitcher.classList.toggle('open');
+                        const isOpen = langSwitcher.classList.contains('open');
+                        langBtn.setAttribute('aria-expanded', isOpen);
                     });
-                });
 
-                document.addEventListener('click', () => {
+                    langOptions.forEach(opt => {
+                        opt.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+
+                            const selectedLang = opt.getAttribute('data-lang');
+                            document.querySelectorAll('.lang-current').forEach(el => el.textContent = selectedLang);
+
+                            document.querySelectorAll('.lang-option').forEach(o => {
+                                if (o.getAttribute('data-lang') === selectedLang) {
+                                    o.classList.add('active');
+                                } else {
+                                    o.classList.remove('active');
+                                }
+                            });
+
+                            langSwitcher.classList.remove('open');
+                            langBtn.setAttribute('aria-expanded', 'false');
+                        });
+                    });
+                }
+            });
+
+            document.addEventListener('click', () => {
+                langSwitchers.forEach(langSwitcher => {
                     langSwitcher.classList.remove('open');
-                    langBtn.setAttribute('aria-expanded', 'false');
+                    const langBtn = langSwitcher.querySelector('.btn-lang');
+                    if (langBtn) langBtn.setAttribute('aria-expanded', 'false');
                 });
-            }
+            });
         });
     </script>
 </body>

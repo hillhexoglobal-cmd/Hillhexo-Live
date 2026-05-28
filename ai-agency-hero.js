@@ -1015,3 +1015,33 @@ document.addEventListener('DOMContentLoaded', () => {
         servicesSection.insertBefore(bgContainer, servicesSection.firstChild);
     }
 });
+
+// Hamburger Menu Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    const navCapsule = document.querySelector('.nav-capsule');
+
+    if (hamburgerMenu && navCapsule) {
+        hamburgerMenu.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hamburgerMenu.classList.toggle('active');
+            navCapsule.classList.toggle('active');
+        });
+        
+        // Close menu on link click
+        navCapsule.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerMenu.classList.remove('active');
+                navCapsule.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navCapsule.contains(e.target) && !hamburgerMenu.contains(e.target)) {
+                hamburgerMenu.classList.remove('active');
+                navCapsule.classList.remove('active');
+            }
+        });
+    }
+});
