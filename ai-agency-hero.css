@@ -121,7 +121,7 @@ body::after {
 }
 
 .logo img {
-    height: 32px;
+    height: 40px;
 }
 
 .logo-text {
@@ -1910,7 +1910,7 @@ body::after {
 }
 
 .footer-logo img {
-    height: 55px;
+    height: 68px;
     filter: brightness(1.15) drop-shadow(0 2px 8px rgba(0,0,0,0.35));
 }
 
@@ -2293,7 +2293,7 @@ body::after {
 }
 
 .preloader-logo-img {
-    height: 72px;
+    height: 90px;
     filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
 }
 
