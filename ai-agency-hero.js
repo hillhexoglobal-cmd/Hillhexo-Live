@@ -22,7 +22,7 @@ document.addEventListener('click', (e) => {
 
     const CONFIG = {
         particleCount: 12000,
-        shapeSize: 12,
+        shapeSize: 16, // Increased shape size (was 12) to make center shapes bigger
         swarmDistanceFactor: 1.4,
         swirlFactor: 3.5,
         noiseFrequency: 0.08,
@@ -36,17 +36,19 @@ document.addEventListener('click', (e) => {
         bloomRadius: 0.4,
         bloomThreshold: 0.1,
         idleFlowStrength: 0.2,
-        idleFlowSpeed: 0.06,
-        idleRotationSpeed: 0.015,
+        idleFlowSpeed: 0.072, // 20% increase (from 0.06)
+        idleRotationSpeed: 0.018, // 20% increase (from 0.015)
         morphSizeFactor: 0.4,
         morphBrightnessFactor: 0.5
     };
 
     const SHAPES = [
-        { name: 'Tornado', generator: generateTornado },
+        { name: 'Helix', generator: generateHelix },
         { name: 'Globe', generator: generateGlobe },
-        { name: 'Clock', generator: generateClock },
-        { name: 'Location', generator: generateLocation }
+        { name: 'Hyperboloid', generator: generateHyperboloid },
+        { name: 'Crystal', generator: generateCrystal },
+        { name: 'Blackhole', generator: generateBlackhole },
+        { name: 'Torus', generator: generateTorus }
     ];
     let currentShapeIndex = 0;
 
@@ -70,36 +72,36 @@ document.addEventListener('click', (e) => {
     const currentVec = new THREE.Vector3();
 
     // Generator functions
-    function generateTornado(count, size) {
+    function generateHelix(count, size) {
         const points = new Float32Array(count * 3);
         let index = 0;
-        const scale = size / 12;
+        const radius = size * 0.55;
+        const height = size * 1.3;
 
         for (let i = 0; i < count; i++) {
-            // y goes from bottom to top: e.g., from -7 * scale to 7 * scale
-            const t = Math.random();
-            const y = (t - 0.5) * 14 * scale;
+            // Alternate between two strands
+            const strand = Math.random() < 0.5 ? 0 : Math.PI;
+            const t = Math.random(); // height progress from 0 to 1
+            const y = (t - 0.5) * height;
 
-            // Tornado funnel shape: narrow bottom, wide top
-            const heightFactor = (y + 7 * scale) / (14 * scale); // 0 to 1
-            const baseR = 0.6 * scale;
-            const topR = 5.5 * scale;
-            
-            // Curved funnel: using Math.pow to create exponential expansion at the top
-            const r = (baseR + (topR - baseR) * Math.pow(heightFactor, 2.0)) * (0.8 + Math.random() * 0.4);
+            // Spiral angle spirals up along the y axis
+            const spiralTurns = 3.0;
+            const angle = t * spiralTurns * Math.PI * 2 + strand;
 
-            // Angle spirals up the tornado
-            const spiralTurns = 4.0; // number of spiral loops
-            const angle = heightFactor * spiralTurns * Math.PI * 2 + Math.random() * Math.PI * 2;
+            // Helix strand line points
+            let x = Math.cos(angle) * radius;
+            let z = Math.sin(angle) * radius;
 
-            const x = Math.cos(angle) * r;
-            const z = Math.sin(angle) * r;
+            // Add some noise/fuzziness to make it look like a cloud of energy
+            const fuzz = 0.15 * radius;
+            x += (Math.random() - 0.5) * fuzz;
+            z += (Math.random() - 0.5) * fuzz;
+            const dy = (Math.random() - 0.5) * fuzz;
 
             points[index++] = x;
-            points[index++] = y;
+            points[index++] = y + dy;
             points[index++] = z;
         }
-
         return points;
     }
 
@@ -183,242 +185,120 @@ document.addEventListener('click', (e) => {
         return points;
     }
 
-    function generateClock(count, size) {
+    function generateHyperboloid(count, size) {
         const points = new Float32Array(count * 3);
         let index = 0;
-        const radius = size * 0.65;
+        const R = size * 0.6; // Waist radius
 
-        const bezelCount = Math.floor(count * 0.45);
-        const tickCount = Math.floor(count * 0.15);
-        const minHandCount = Math.floor(count * 0.15);
-        const hourHandCount = Math.floor(count * 0.15);
-        const faceCount = count - bezelCount - tickCount - minHandCount - hourHandCount;
+        for (let i = 0; i < count; i++) {
+            const v = (Math.random() - 0.5) * 2.0; // height from -1 to 1
+            const theta = Math.random() * Math.PI * 2;
+            const y = v * size * 0.7;
 
-        const pitch = 0.3;
-        const yaw = 0.4;
-        const roll = -0.2;
-        const cosP = Math.cos(pitch), sinP = Math.sin(pitch);
-        const cosY = Math.cos(yaw), sinY = Math.sin(yaw);
-        const cosR = Math.cos(roll), sinR = Math.sin(roll);
+            // Hyperboloid equation: r = R * sqrt(1 + v^2)
+            const r = R * Math.sqrt(1 + v * v) * (0.9 + Math.random() * 0.2);
 
-        function rotate(lx, ly, lz) {
-            let x1 = lx * cosR - ly * sinR;
-            let y1 = lx * sinR + ly * cosR;
-            let z1 = lz;
-            let x2 = x1;
-            let y2 = y1 * cosP - z1 * sinP;
-            let z2 = y1 * sinP + z1 * cosP;
-            let rx = x2 * cosY + z2 * sinY;
-            let ry = y2;
-            let rz = -x2 * sinY + z2 * cosY;
-            return [rx, ry, rz];
+            const x = Math.cos(theta) * r;
+            const z = Math.sin(theta) * r;
+
+            points[index++] = x;
+            points[index++] = y;
+            points[index++] = z;
         }
-
-        // 1. Bezel outer ring
-        for (let i = 0; i < bezelCount; i++) {
-            const angle = Math.random() * Math.PI * 2;
-            const r = radius * (0.96 + Math.random() * 0.04);
-            const lz = (Math.random() - 0.5) * 0.8;
-            const lx = r * Math.cos(angle);
-            const ly = r * Math.sin(angle);
-
-            const rot = rotate(lx, ly, lz);
-            points[index++] = rot[0];
-            points[index++] = rot[1];
-            points[index++] = rot[2];
-        }
-
-        // 2. Ticks
-        for (let i = 0; i < tickCount; i++) {
-            const tickIndex = Math.floor(Math.random() * 12);
-            const angle = (tickIndex / 12) * Math.PI * 2;
-            const t = Math.random();
-            const r = radius * (0.82 + t * 0.10);
-            const lz = (Math.random() - 0.5) * 0.5;
-            const lx = r * Math.cos(angle);
-            const ly = r * Math.sin(angle);
-
-            const rot = rotate(lx, ly, lz);
-            points[index++] = rot[0];
-            points[index++] = rot[1];
-            points[index++] = rot[2];
-        }
-
-        // 3. Minute hand
-        const minAngle = Math.PI / 2 - (10 / 60) * Math.PI * 2;
-        for (let i = 0; i < minHandCount; i++) {
-            const t = Math.random();
-            const r = radius * 0.75 * t;
-            const lz = 0.5 + (Math.random() - 0.5) * 0.3;
-            const sideOffset = (Math.random() - 0.5) * 0.15;
-            const lx = r * Math.cos(minAngle) - sideOffset * Math.sin(minAngle);
-            const ly = r * Math.sin(minAngle) + sideOffset * Math.cos(minAngle);
-
-            const rot = rotate(lx, ly, lz);
-            points[index++] = rot[0];
-            points[index++] = rot[1];
-            points[index++] = rot[2];
-        }
-
-        // 4. Hour hand
-        const hourAngle = Math.PI / 2 - (10 / 12) * Math.PI * 2;
-        for (let i = 0; i < hourHandCount; i++) {
-            const t = Math.random();
-            const r = radius * 0.50 * t;
-            const lz = 0.9 + (Math.random() - 0.5) * 0.3;
-            const sideOffset = (Math.random() - 0.5) * 0.22;
-            const lx = r * Math.cos(hourAngle) - sideOffset * Math.sin(hourAngle);
-            const ly = r * Math.sin(hourAngle) + sideOffset * Math.cos(hourAngle);
-
-            const rot = rotate(lx, ly, lz);
-            points[index++] = rot[0];
-            points[index++] = rot[1];
-            points[index++] = rot[2];
-        }
-
-        // 5. Dial plate backing
-        for (let i = 0; i < faceCount; i++) {
-            const angle = Math.random() * Math.PI * 2;
-            const r = radius * 0.8 * Math.sqrt(Math.random());
-            const lz = -0.5 + (Math.random() - 0.5) * 0.2;
-            const lx = r * Math.cos(angle);
-            const ly = r * Math.sin(angle);
-
-            const rot = rotate(lx, ly, lz);
-            points[index++] = rot[0];
-            points[index++] = rot[1];
-            points[index++] = rot[2];
-        }
-
         return points;
     }
 
-    function generateLocation(count, size) {
+    function generateCrystal(count, size) {
         const points = new Float32Array(count * 3);
         let index = 0;
-        const scale = size / 12;
+        const radius = size * 0.8;
 
-        const outerCount = Math.floor(count * 0.40);
-        const innerCount = Math.floor(count * 0.20);
-        const fillCount = Math.floor(count * 0.30);
-        const shadowCount = count - outerCount - innerCount - fillCount;
+        for (let i = 0; i < count; i++) {
+            // Generate points on the surfaces of an octahedron: |x| + |y| + |z| = radius
+            const u = (Math.random() - 0.5) * 2;
+            const v = (Math.random() - 0.5) * 2;
+            const w = (Math.random() - 0.5) * 2;
 
-        const cy = 2.5 * scale;
-        const rOuter = 3.5 * scale;
-        const rInner = 1.2 * scale;
-        const tipY = -4.5 * scale;
+            // Normalize to L1 norm
+            const sum = Math.abs(u) + Math.abs(v) + Math.abs(w);
+            const scale = radius / (sum === 0 ? 1 : sum);
 
-        const pitch = 0.25;
-        const yaw = 0.45;
-        const cosP = Math.cos(pitch), sinP = Math.sin(pitch);
-        const cosY = Math.cos(yaw), sinY = Math.sin(yaw);
+            let x = u * scale;
+            let y = v * scale;
+            let z = w * scale;
 
-        function rotate(lx, ly, lz) {
-            let y1 = ly * cosP - lz * sinP;
-            let z1 = ly * sinP + lz * cosP;
-            let rx = lx * cosY + z1 * sinY;
-            let ry = y1;
-            let rz = -lx * sinY + z1 * cosY;
-            return [rx, ry, rz];
+            // Add slight random inside noise to make the crystal look filled/holographic
+            const insideFactor = 0.85 + Math.random() * 0.15;
+            x *= insideFactor;
+            y *= insideFactor;
+            z *= insideFactor;
+
+            points[index++] = x;
+            points[index++] = y;
+            points[index++] = z;
         }
+        return points;
+    }
 
-        // 1. Outer boundary
-        for (let i = 0; i < outerCount; i++) {
-            let lx, ly;
-            const t = Math.random();
-            if (t < 0.5) {
-                const startAngle = -Math.PI / 6;
-                const endAngle = 7 * Math.PI / 6;
-                const angle = startAngle + Math.random() * (endAngle - startAngle);
-                lx = rOuter * Math.cos(angle);
-                ly = cy + rOuter * Math.sin(angle);
-            } else {
-                const side = Math.random() < 0.5 ? -1 : 1;
-                const lineT = Math.random();
-                const tangentAngle = side > 0 ? -Math.PI / 6 : 7 * Math.PI / 6;
-                const tx = rOuter * Math.cos(tangentAngle);
-                const ty = cy + rOuter * Math.sin(tangentAngle);
-                
-                lx = THREE.MathUtils.lerp(tx, 0, lineT);
-                ly = THREE.MathUtils.lerp(ty, tipY, lineT);
-            }
-            const lz = (Math.random() - 0.5) * 1.2 * scale;
-            const rot = rotate(lx, ly, lz);
-            points[index++] = rot[0];
-            points[index++] = rot[1];
-            points[index++] = rot[2];
+    function generateBlackhole(count, size) {
+        const points = new Float32Array(count * 3);
+        let index = 0;
+        const radius = size * 0.65;
+        
+        // Accretion disk count: 75% of particles
+        const diskCount = Math.floor(count * 0.75);
+        const lensingCount = count - diskCount;
+        
+        // 1. Accretion Disk (flat spiraling particles with noise)
+        for (let i = 0; i < diskCount; i++) {
+            const r = THREE.MathUtils.randFloat(radius * 0.25, radius * 2.0);
+            const theta = Math.random() * Math.PI * 2 + (r * 1.5); // Spiral winding
+            const x = Math.cos(theta) * r;
+            const z = Math.sin(theta) * r;
+            const y = (Math.random() - 0.5) * 0.15 * radius * (1.0 / (r * 0.5)); // thinner at edges
+            
+            points[index++] = x;
+            points[index++] = y;
+            points[index++] = z;
         }
-
-        // 2. Inner circular boundary
-        for (let i = 0; i < innerCount; i++) {
-            const angle = Math.random() * Math.PI * 2;
-            const lx = rInner * Math.cos(angle);
-            const ly = cy + rInner * Math.sin(angle);
-            const lz = (Math.random() - 0.5) * 1.4 * scale;
-
-            const rot = rotate(lx, ly, lz);
-            points[index++] = rot[0];
-            points[index++] = rot[1];
-            points[index++] = rot[2];
+        
+        // 2. Gravitational Lensing (vertical halo/ring around the center)
+        for (let i = 0; i < lensingCount; i++) {
+            const r = radius * 0.7;
+            const theta = Math.random() * Math.PI * 2;
+            const phi = (Math.random() - 0.5) * 0.2; // thin band
+            // Rotate the ring vertically to represent the lensed light bending over the top/bottom
+            const x = r * Math.sin(theta);
+            const y = r * Math.cos(theta) * Math.sin(phi);
+            const z = r * Math.cos(theta) * Math.cos(phi);
+            
+            points[index++] = x;
+            points[index++] = y;
+            points[index++] = z;
         }
+        
+        return points;
+    }
 
-        // 3. Fill faces
-        for (let i = 0; i < fillCount; i++) {
-            let lx, ly;
-            let attempts = 0;
-            while (attempts < 100) {
-                attempts++;
-                const px = (Math.random() - 0.5) * 2 * rOuter;
-                const py = tipY + Math.random() * (cy + rOuter - tipY);
-                const dy = py - cy;
-                const distToCircleCenter = Math.sqrt(px * px + dy * dy);
-                
-                if (distToCircleCenter < rInner) continue;
-                
-                if (distToCircleCenter <= rOuter && py >= cy) {
-                    lx = px;
-                    ly = py;
-                    break;
-                }
-                
-                if (py < cy) {
-                    const tangentAngle = -Math.PI / 6;
-                    const tx = rOuter * Math.cos(tangentAngle);
-                    const ty = cy + rOuter * Math.sin(tangentAngle);
-                    const slope = (ty - tipY) / tx;
-                    const limitX = (py - tipY) / slope;
-                    if (Math.abs(px) <= limitX) {
-                        lx = px;
-                        ly = py;
-                        break;
-                    }
-                }
-            }
-            if (lx === undefined) {
-                lx = 0;
-                ly = cy;
-            }
-            const lz = (Math.random() - 0.5) * 1.0 * scale;
-            const rot = rotate(lx, ly, lz);
-            points[index++] = rot[0];
-            points[index++] = rot[1];
-            points[index++] = rot[2];
+    function generateTorus(count, size) {
+        const points = new Float32Array(count * 3);
+        let index = 0;
+        const R = size * 0.7; // Major radius
+        const r = size * 0.25; // Minor radius
+
+        for (let i = 0; i < count; i++) {
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.random() * Math.PI * 2;
+
+            // Torus parametric equations
+            const x = (R + r * Math.cos(phi)) * Math.cos(theta);
+            const y = r * Math.sin(phi);
+            const z = (R + r * Math.cos(phi)) * Math.sin(theta);
+
+            points[index++] = x;
+            points[index++] = y;
+            points[index++] = z;
         }
-
-        // 4. Base shadow loop
-        for (let i = 0; i < shadowCount; i++) {
-            const angle = Math.random() * Math.PI * 2;
-            const r = scale * 1.8 * Math.sqrt(Math.random());
-            const lx = r * Math.cos(angle);
-            const ly = tipY - 0.2 * scale;
-            const lz = r * Math.sin(angle) * 0.4;
-
-            const rot = rotate(lx, ly, lz);
-            points[index++] = rot[0];
-            points[index++] = rot[1];
-            points[index++] = rot[2];
-        }
-
         return points;
     }
 
@@ -449,7 +329,7 @@ document.addEventListener('click', (e) => {
         controls.minDistance = 4;
         controls.maxDistance = 70;
         controls.autoRotate = true;
-        controls.autoRotateSpeed = 2.4;
+        controls.autoRotateSpeed = 2.88;
         controls.enableZoom = false;
 
         scene.add(new THREE.AmbientLight(0x505070));

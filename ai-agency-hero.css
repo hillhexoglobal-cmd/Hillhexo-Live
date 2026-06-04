@@ -139,7 +139,7 @@ body::after {
 }
 
 .logo-text .gold-text {
-    color: #1d438a; /* Golden O */
+    color: #2d6bef; /* Vibrant Blue O */
 }
 
 /* Centered Navigation Capsule */
@@ -855,7 +855,7 @@ body::after {
 }
 
 .gold-text {
-    color: #1d438a;
+    color: #2d6bef;
 }
 
 /* --- ABOUT SECTION STYLES --- */
@@ -1707,6 +1707,33 @@ body::after {
     text-align: left;
     position: relative;
     z-index: 2;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.quote-text-col .section-badge,
+.quote-text-col h2,
+.quote-text-col .subtitle,
+.quote-text-col .btn-phone-animated {
+    position: relative;
+    z-index: 3;
+}
+
+.quote-globe-bg-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.85);
+    width: 560px;
+    height: 560px;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.22;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .quote-text-col h2 {
@@ -1735,7 +1762,7 @@ body::after {
 .quote-globe-container {
     width: 560px;
     height: 560px;
-    position: relative;
+    position: absolute;
     z-index: 1;
 }
 
@@ -1922,12 +1949,19 @@ body::after {
     margin: 0;
 }
 
-.footer-logo span {
+.footer-logo span:not(.gold-text) {
     font-size: 0.8rem;
     color: #1d438a;
     vertical-align: super;
     margin-left: 5px;
     font-weight: 800;
+}
+
+.footer-logo h2 span.gold-text {
+    font-size: 2rem !important;
+    vertical-align: baseline !important;
+    margin-left: 0 !important;
+    font-weight: 700 !important;
 }
 
 .footer-desc {
@@ -3060,6 +3094,8 @@ canvas#webglCanvas {
         position: static;
         flex: 1;
         z-index: 1;
+        display: flex;
+        align-items: center;
     }
 
     .logo img {
@@ -3067,7 +3103,33 @@ canvas#webglCanvas {
     }
 
     .logo-text {
-        display: none;
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        font-size: 1.25rem;
+        letter-spacing: 1px;
+        opacity: 0;
+        max-width: 0;
+        margin-left: 0;
+        animation: mobileLogoLoop 8s infinite ease-in-out;
+    }
+
+    @keyframes mobileLogoLoop {
+        0%, 100% {
+            max-width: 0;
+            opacity: 0;
+            margin-left: 0;
+        }
+        5%, 45% {
+            max-width: 150px;
+            opacity: 1;
+            margin-left: 8px;
+        }
+        50%, 95% {
+            max-width: 0;
+            opacity: 0;
+            margin-left: 0;
+        }
     }
 
     .nav-capsule {
