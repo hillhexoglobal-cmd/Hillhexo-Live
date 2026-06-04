@@ -450,6 +450,7 @@ document.addEventListener('click', (e) => {
         controls.maxDistance = 70;
         controls.autoRotate = true;
         controls.autoRotateSpeed = 2.4;
+        controls.enableZoom = false;
 
         scene.add(new THREE.AmbientLight(0x505070));
         const dirLight1 = new THREE.DirectionalLight(0xffffff, 1.7);
