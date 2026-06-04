@@ -645,9 +645,7 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('in-view');
-                    } else {
-                        // Remove in-view so animation replays every time user scrolls back
-                        entry.target.classList.remove('in-view');
+                        observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);

@@ -2547,6 +2547,15 @@ canvas#webglCanvas {
     .vertical-img-wrapper {
         height: 320px;
     }
+    /* Disable hover animations on mobile touch to prevent shaking/stuttering */
+    .vertical-img-wrapper:hover {
+        transform: none !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04) !important;
+        border-color: rgba(0, 0, 0, 0.05) !important;
+    }
+    .vertical-img-wrapper:hover img {
+        transform: none !important;
+    }
 }
 
 /* --- PAGE HERO BANNER --- */
