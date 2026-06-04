@@ -43,7 +43,7 @@ document.addEventListener('click', (e) => {
     };
 
     const SHAPES = [
-        { name: 'Flight', generator: generateFlight },
+        { name: 'Tornado', generator: generateTornado },
         { name: 'Globe', generator: generateGlobe },
         { name: 'Clock', generator: generateClock },
         { name: 'Location', generator: generateLocation }
@@ -70,162 +70,34 @@ document.addEventListener('click', (e) => {
     const currentVec = new THREE.Vector3();
 
     // Generator functions
-    function generateFlight(count, size) {
+    function generateTornado(count, size) {
         const points = new Float32Array(count * 3);
         let index = 0;
         const scale = size / 12;
 
-        const fuselageCount = Math.floor(count * 0.35);
-        const wingsCount = Math.floor(count * 0.45);
-        const enginesCount = Math.floor(count * 0.10);
-        const tailCount = count - fuselageCount - wingsCount - enginesCount;
-
-        // 3D Rotation angles to match the exact flying pose:
-        // Yawed to the right, pitched upwards, and rolled slightly
-        const pitch = 0.24; // ~14 degrees pitch up
-        const yaw = 0.70;   // ~40 degrees yaw right
-        const roll = -0.16; // ~-9 degrees roll
-
-        const cosP = Math.cos(pitch), sinP = Math.sin(pitch);
-        const cosY = Math.cos(yaw), sinY = Math.sin(yaw);
-        const cosR = Math.cos(roll), sinR = Math.sin(roll);
-
-        // Helper to rotate local coordinates into the flying pose
-        function rotate(x, y, z) {
-            // 1. Roll (around Z-axis)
-            let x1 = x * cosR - y * sinR;
-            let y1 = x * sinR + y * cosR;
-            let z1 = z;
-
-            // 2. Pitch (around X-axis)
-            let x2 = x1;
-            let y2 = y1 * cosP - z1 * sinP;
-            let z2 = y1 * sinP + z1 * cosP;
-
-            // 3. Yaw (around Y-axis)
-            let rx = x2 * cosY + z2 * sinY;
-            let ry = y2;
-            let rz = -x2 * sinY + z2 * cosY;
-
-            return [rx, ry, rz];
-        }
-
-        // 1. Fuselage (Cylindrical wide body centered at 0,0 extending along Z)
-        for (let i = 0; i < fuselageCount; i++) {
+        for (let i = 0; i < count; i++) {
+            // y goes from bottom to top: e.g., from -7 * scale to 7 * scale
             const t = Math.random();
-            const z = (t - 0.5) * 16 * scale; // Z from -8 to 8
-            let r = 1.25 * scale; // Thicker wide-body fuselage
+            const y = (t - 0.5) * 14 * scale;
 
-            // Nose cone tapering
-            if (z > 3 * scale) {
-                const noseFactor = (z - 3 * scale) / (5 * scale);
-                r *= (1.0 - noseFactor);
-            }
-            // Tail tapering
-            else if (z < -3 * scale) {
-                const tailFactor = (Math.abs(z) - 3 * scale) / (5 * scale);
-                r *= (1.0 - 0.75 * tailFactor);
-            }
-            r = Math.max(0.05 * scale, r);
-
-            const theta = Math.random() * Math.PI * 2;
-            const lx = Math.cos(theta) * r;
-            const ly = Math.sin(theta) * r + 0.1 * scale;
-            const lz = z;
-
-            const rot = rotate(lx, ly, lz);
-            points[index++] = rot[0];
-            points[index++] = rot[1];
-            points[index++] = rot[2];
-        }
-
-        // 2. Wings (Swept back with curved winglets at the tips)
-        for (let i = 0; i < wingsCount; i++) {
-            const side = Math.random() < 0.5 ? -1 : 1;
-            const wingTipX = 12 * scale;
-            const x = (1.2 + Math.random() * 10.8) * scale;
+            // Tornado funnel shape: narrow bottom, wide top
+            const heightFactor = (y + 7 * scale) / (14 * scale); // 0 to 1
+            const baseR = 0.6 * scale;
+            const topR = 5.5 * scale;
             
-            // Sweep back in Z
-            const sweep = x * 0.45;
-            const chord = (2.4 * scale) * (1.0 - (x / wingTipX) * 0.75);
-            const z = (Math.random() - 0.5) * chord - sweep + 1.2 * scale;
-            
-            // Dihedral lift + winglet curve
-            let y = (x * 0.04);
-            if (x > wingTipX * 0.88) {
-                const wingletFactor = (x - wingTipX * 0.88) / (wingTipX * 0.12);
-                y += Math.pow(wingletFactor, 2) * 1.6 * scale; // Upward winglets
-            }
-            y += (Math.random() - 0.5) * 0.08 * scale; // Wing thickness
+            // Curved funnel: using Math.pow to create exponential expansion at the top
+            const r = (baseR + (topR - baseR) * Math.pow(heightFactor, 2.0)) * (0.8 + Math.random() * 0.4);
 
-            const lx = x * side;
-            const ly = y + 0.15 * scale;
-            const lz = z;
+            // Angle spirals up the tornado
+            const spiralTurns = 4.0; // number of spiral loops
+            const angle = heightFactor * spiralTurns * Math.PI * 2 + Math.random() * Math.PI * 2;
 
-            const rot = rotate(lx, ly, lz);
-            points[index++] = rot[0];
-            points[index++] = rot[1];
-            points[index++] = rot[2];
-        }
+            const x = Math.cos(angle) * r;
+            const z = Math.sin(angle) * r;
 
-        // 3. Engines (Large high-bypass turbofans under the wings)
-        for (let i = 0; i < enginesCount; i++) {
-            const side = Math.random() < 0.5 ? -1 : 1;
-            const engineX = 4.2 * scale * side;
-            const engineY = -0.7 * scale;
-            const engineZCenter = -0.2 * scale;
-            const engineLength = 1.8 * scale;
-            const engineRadius = 0.6 * scale; // Fatter turbofan engines
-
-            const t = Math.random();
-            const z = engineZCenter + (t - 0.5) * engineLength;
-            const theta = Math.random() * Math.PI * 2;
-
-            const lx = engineX + Math.cos(theta) * engineRadius;
-            const ly = engineY + Math.sin(theta) * engineRadius + (engineX * 0.04);
-            const lz = z;
-
-            const rot = rotate(lx, ly, lz);
-            points[index++] = rot[0];
-            points[index++] = rot[1];
-            points[index++] = rot[2];
-        }
-
-        // 4. Tail fin & Horizontal stabilizers
-        for (let i = 0; i < tailCount; i++) {
-            const isVertical = Math.random() < 0.5;
-            if (isVertical) {
-                // Vertical stabilizer tail fin
-                const tailHeight = 3.8 * scale;
-                const h = Math.random() * tailHeight;
-                const sweep = h * 0.85;
-                const chord = (1.8 * scale) * (1.0 - (h / tailHeight) * 0.6);
-
-                const lx = (Math.random() - 0.5) * 0.08 * scale;
-                const ly = h + 1.2 * scale;
-                const lz = -6.0 * scale - sweep + (Math.random() - 0.5) * chord;
-
-                const rot = rotate(lx, ly, lz);
-                points[index++] = rot[0];
-                points[index++] = rot[1];
-                points[index++] = rot[2];
-            } else {
-                // Horizontal stabilizers
-                const side = Math.random() < 0.5 ? -1 : 1;
-                const span = 4.4 * scale;
-                const x = Math.random() * span;
-                const sweep = x * 0.4;
-                const chord = (1.0 * scale) * (1.0 - (x / span) * 0.5);
-
-                const lx = x * side;
-                const ly = (Math.random() - 0.5) * 0.08 * scale + 0.2 * scale;
-                const lz = -6.5 * scale - sweep + (Math.random() - 0.5) * chord;
-
-                const rot = rotate(lx, ly, lz);
-                points[index++] = rot[0];
-                points[index++] = rot[1];
-                points[index++] = rot[2];
-            }
+            points[index++] = x;
+            points[index++] = y;
+            points[index++] = z;
         }
 
         return points;
@@ -577,7 +449,7 @@ document.addEventListener('click', (e) => {
         controls.minDistance = 4;
         controls.maxDistance = 70;
         controls.autoRotate = true;
-        controls.autoRotateSpeed = 0.4;
+        controls.autoRotateSpeed = 2.4;
 
         scene.add(new THREE.AmbientLight(0x505070));
         const dirLight1 = new THREE.DirectionalLight(0xffffff, 1.7);
