@@ -2914,7 +2914,7 @@ canvas#webglCanvas {
     color: #94a3b8;
 }
 
-.form-group input:focus, .form-group textarea:focus {
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
     outline: none;
     border-color: #1d438a;
     background: #ffffff;

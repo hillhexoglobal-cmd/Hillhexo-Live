@@ -516,9 +516,43 @@
                             </span>
                         </a>
                     </div>
-                    <!-- Right Column: 3D Rotating Globe -->
-                    <div class="quote-globe-col scroll-reveal">
-                        <div class="quote-globe-container" id="quote-globe-container"></div>
+                    <!-- Right Column: Enquiry Form -->
+                    <div class="quote-globe-col scroll-reveal" style="z-index: 20;">
+                        <form action="mailto:hillhexo.global@gmail.com" method="post" enctype="text/plain" class="premium-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="quote-name">Name</label>
+                                    <input type="text" id="quote-name" name="name" placeholder="John Doe" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quote-email">Email</label>
+                                    <input type="email" id="quote-email" name="email" placeholder="john@example.com" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="quote-phone">Phone Number</label>
+                                    <input type="tel" id="quote-phone" name="phone" placeholder="+44 7553 599805" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quote-priority">Priority Status</label>
+                                    <select id="quote-priority" name="priority" required style="background: #f8fafc; border: 1px solid rgba(29, 67, 138, 0.15); border-radius: 12px; padding: 0.9rem 1.2rem; color: #0f172a; font-family: 'Outfit', sans-serif; font-size: 0.95rem; transition: all 0.3s ease; width: 100%; outline: none; cursor: pointer;">
+                                        <option value="" disabled selected>Select priority</option>
+                                        <option value="Low">Low</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="Urgent">Urgent</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="quote-message">Message Enquiry Box</label>
+                                <textarea id="quote-message" name="message" rows="4" placeholder="Describe your shipment details or inquiries..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit">
+                                <span>Send Enquiry</span>
+                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
