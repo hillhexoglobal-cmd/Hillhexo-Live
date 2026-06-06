@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services - HILLHEXO LTD</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="ai-agency-hero.css">
+    <link rel="stylesheet" href="ai-agency-hero.css?v=2">
     
     <!-- Three.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -67,17 +67,10 @@
             <!-- Center: Capsule Nav Pill -->
             <nav class="nav-capsule">
                 <a href="ai-agency-hero.html">Home</a>
-                <a href="about.html">About Us</a>
+
                 <a href="services.html" class="active">Services</a>
                 <a href="contact.html">Contact</a>
-                <!-- Mobile Only CTA Button -->
-                <a href="mailto:hillhexo.global@gmail.com" class="btn-cta mobile-only" style="margin-top: 1.5rem; display: none;">
-                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="cta-icon">
-                        <line x1="22" y1="2" x2="11" y2="13"></line>
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                    </svg>
-                    <span>Get Quote</span>
-                </a>
+
 
                 <!-- Mobile Only Language Switcher -->
                 <div class="lang-switcher mobile-only" style="margin-top: 1.5rem; justify-content: center; width: 100%; display: none;">
@@ -99,15 +92,7 @@
                 </div>
             </nav>
             
-            <!-- Right Side: CTA Button -->
             <div class="header-cta">
-                <a href="mailto:hillhexo.global@gmail.com" class="btn-cta desktop-only">
-                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="cta-icon">
-                        <line x1="22" y1="2" x2="11" y2="13"></line>
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                    </svg>
-                    <span>Get Quote</span>
-                </a>
 
                 <!-- Desktop Language Switcher -->
                 <div class="lang-switcher desktop-only">
@@ -149,24 +134,163 @@
     <!-- Scrollable Content Sections -->
     <main class="page-content" style="margin-top: 5vh;">
         
-        <!-- Core Business Models (Light) -->
+        <!-- Working Protocol / Operational Workflow (Light Serpentine Timeline) -->
         <section class="mid-section section-light">
+            <div class="section-container">
+                <div class="text-center scroll-reveal" style="margin-bottom: 4rem; text-align: center;">
+                    <span class="section-badge">OUR PROCESS</span>
+                    <h2>Operational Workflow</h2>
+                    <p style="color: #555555; max-width: 700px; margin: 1.5rem auto 0 auto; font-size: 1.1rem; line-height: 1.6;">Our robust 8-step working protocol guarantees efficiency, quality, and market readiness from concept to distribution.</p>
+                </div>
+
+                <div class="timeline-serpentine-container" id="serpentine-container">
+                    <div class="timeline-steps-only">
+                        <!-- Mobile straight vertical line -->
+                        <div class="timeline-mobile-line"></div>
+
+                        <!-- Desktop Straight Dotted Line SVG -->
+                        <div class="serpentine-svg-wrap">
+                            <svg class="serpentine-svg" viewBox="0 0 200 1600" preserveAspectRatio="none">
+                                <line x1="100" y1="0" x2="100" y2="1600" stroke="rgba(29, 67, 138, 0.3)" stroke-width="3" stroke-dasharray="8 6" fill="none" />
+                            </svg>
+                        </div>
+
+                        <!-- Step 01 — LEFT card -->
+                        <div class="timeline-step-row" data-step="1">
+                            <div class="timeline-card card-left">
+                                <h3>Identification</h3>
+                                <p>Research trends, find high-demand gaps, and evaluate scalability.</p>
+                            </div>
+                            <div class="timeline-node-wrapper">
+                                <div class="timeline-node-icon">
+                                    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+                                </div>
+                            </div>
+                            <div class="card-empty"></div>
+                        </div>
+
+                        <!-- Step 02 — RIGHT card -->
+                        <div class="timeline-step-row" data-step="2">
+                            <div class="card-empty"></div>
+                            <div class="timeline-node-wrapper">
+                                <div class="timeline-node-icon">
+                                    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M12 13v9m-4-4l4 4 4-4"/></svg>
+                                </div>
+                            </div>
+                            <div class="timeline-card card-right">
+                                <h3>Verification</h3>
+                                <p>Validate supplier credibility, capacity, and strict quality standards.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 03 — LEFT card -->
+                        <div class="timeline-step-row" data-step="3">
+                            <div class="timeline-card card-left">
+                                <h3>Market Validation</h3>
+                                <p>Identify target buyers, conduct demand testing, and analyze competition.</p>
+                            </div>
+                            <div class="timeline-node-wrapper">
+                                <div class="timeline-node-icon">
+                                    <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+                                </div>
+                            </div>
+                            <div class="card-empty"></div>
+                        </div>
+
+                        <!-- Step 04 — RIGHT card -->
+                        <div class="timeline-step-row" data-step="4">
+                            <div class="card-empty"></div>
+                            <div class="timeline-node-wrapper">
+                                <div class="timeline-node-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M8 16l2-4-3-3 4-4 3 2 2-2 2 5-4 1v5"/><rect x="6" y="16" width="12" height="2" rx="1"/></svg>
+                                </div>
+                            </div>
+                            <div class="timeline-card card-right">
+                                <h3>Model Decision</h3>
+                                <p>Select the best path: Support Service, Inside Dealer, or Direct Dealer.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 05 — LEFT card -->
+                        <div class="timeline-step-row" data-step="5">
+                            <div class="timeline-card card-left">
+                                <h3>Deal Structuring</h3>
+                                <p>Finalize pricing strategy, contracts, agreements, and payment terms.</p>
+                            </div>
+                            <div class="timeline-node-wrapper">
+                                <div class="timeline-node-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+                                </div>
+                            </div>
+                            <div class="card-empty"></div>
+                        </div>
+
+                        <!-- Step 06 — RIGHT card -->
+                        <div class="timeline-step-row" data-step="6">
+                            <div class="card-empty"></div>
+                            <div class="timeline-node-wrapper">
+                                <div class="timeline-node-icon">
+                                    <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                                </div>
+                            </div>
+                            <div class="timeline-card card-right">
+                                <h3>Logistics Execution</h3>
+                                <p>Arrange shipping, customs clearance, and delivery to warehouse.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 07 — LEFT card -->
+                        <div class="timeline-step-row" data-step="7">
+                            <div class="timeline-card card-left">
+                                <h3>Sales & Distribution</h3>
+                                <p>Deliver directly to buyers, expand market reach, and scale volumes.</p>
+                            </div>
+                            <div class="timeline-node-wrapper">
+                                <div class="timeline-node-icon">
+                                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                                </div>
+                            </div>
+                            <div class="card-empty"></div>
+                        </div>
+
+                        <!-- Step 08 — RIGHT card -->
+                        <div class="timeline-step-row" data-step="8">
+                            <div class="card-empty"></div>
+                            <div class="timeline-node-wrapper">
+                                <div class="timeline-node-icon">
+                                    <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                </div>
+                            </div>
+                            <div class="timeline-card card-right">
+                                <h3>Brand Development</h3>
+                                <p>(Direct Dealer) Create identity, packaging, and marketing campaigns.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Business Models (Dark) -->
+        <section id="services" class="mid-section section-dark">
             <div class="section-container">
                 <div class="text-center scroll-reveal" style="margin-bottom: 4rem; text-align: center;">
                     <span class="section-badge">WHAT WE DO</span>
                     <h2 style="font-size: 2.8rem; margin-bottom: 1.5rem;">Core Business Models</h2>
-                    <p style="color: #555; max-width: 700px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6;">We operate through three distinct, powerful models to maximize global trade potential.</p>
+                    <p style="color: #b0b8c9; max-width: 700px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6;">We operate through three distinct, powerful models to maximize global trade potential.</p>
                 </div>
 
                 <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
                     <!-- Support Services -->
-                    <div class="service-card scroll-reveal">
-                        <div class="service-icon">
-                            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    <div class="services-card card-reveal">
+                        <div class="card-icon-container">
+                            <div class="glow-shape shape-circle">
+                                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" class="icon-svg"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                            </div>
                         </div>
                         <h3>Support Services</h3>
-                        <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">Export/Import Assistance for registered companies and individual traders.</p>
-                        <ul style="color: #666; text-align: left; margin-left: 1.5rem; line-height: 1.6;">
+                        <p style="margin-bottom: 1rem;">Export/Import Assistance for registered companies and individual traders.</p>
+                        <ul class="services-bullets">
                             <li>End-to-end logistics & customs</li>
                             <li>Supplier/buyer coordination</li>
                             <li>UK/EU/IND compliance</li>
@@ -175,13 +299,15 @@
                     </div>
 
                     <!-- Inside Dealer -->
-                    <div class="service-card scroll-reveal" style="transition-delay: 100ms;">
-                        <div class="service-icon">
-                            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <div class="services-card card-reveal" style="transition-delay: 100ms;">
+                        <div class="card-icon-container">
+                            <div class="glow-shape shape-triangle">
+                                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" class="icon-svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            </div>
                         </div>
                         <h3>Inside Dealer</h3>
-                        <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">Market-based Third-Party Trading connecting global suppliers with active buyers.</p>
-                        <ul style="color: #666; text-align: left; margin-left: 1.5rem; line-height: 1.6;">
+                        <p style="margin-bottom: 1rem;">Market-based Third-Party Trading connecting global suppliers with active buyers.</p>
+                        <ul class="services-bullets">
                             <li>Global market research</li>
                             <li>Product sourcing & validation</li>
                             <li>Deal structuring & negotiation</li>
@@ -190,13 +316,15 @@
                     </div>
 
                     <!-- Direct Dealer -->
-                    <div class="service-card scroll-reveal" style="transition-delay: 200ms;">
-                        <div class="service-icon">
-                            <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                    <div class="services-card card-reveal" style="transition-delay: 200ms;">
+                        <div class="card-icon-container">
+                            <div class="glow-shape shape-square">
+                                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" class="icon-svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                            </div>
                         </div>
                         <h3>Direct Dealer</h3>
-                        <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">Brand Ownership and Market Creation for high-potential, niche products.</p>
-                        <ul style="color: #666; text-align: left; margin-left: 1.5rem; line-height: 1.6;">
+                        <p style="margin-bottom: 1rem;">Brand Ownership and Market Creation for high-potential, niche products.</p>
+                        <ul class="services-bullets">
                             <li>Select high-potential products</li>
                             <li>Private-label & rebranding</li>
                             <li>Market presence in UK/EU/IND</li>
@@ -207,122 +335,7 @@
             </div>
         </section>
 
-        <!-- Working Protocol / Operational Workflow (Dark) -->
-        <section class="mid-section section-dark">
-            <div class="section-container">
-                <div class="text-center scroll-reveal" style="margin-bottom: 4rem; text-align: center;">
-                    <span class="section-badge">OUR PROCESS</span>
-                    <h2>Operational Workflow</h2>
-                    <p style="color: #94a3b8; max-width: 700px; margin: 1.5rem auto 0 auto; font-size: 1.1rem; line-height: 1.6;">Our robust 8-step working protocol guarantees efficiency, quality, and market readiness from concept to distribution.</p>
-                </div>
 
-                <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-                    <div class="service-card dark-card scroll-reveal" style="padding: 2rem;">
-                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #ffffff;">1. Identification</h3>
-                        <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6;">Research trends, find high-demand gaps, and evaluate scalability.</p>
-                    </div>
-                    <div class="service-card dark-card scroll-reveal" style="padding: 2rem; transition-delay: 50ms;">
-                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #ffffff;">2. Verification</h3>
-                        <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6;">Validate supplier credibility, capacity, and strict quality standards.</p>
-                    </div>
-                    <div class="service-card dark-card scroll-reveal" style="padding: 2rem; transition-delay: 100ms;">
-                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #ffffff;">3. Market Validation</h3>
-                        <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6;">Identify target buyers, conduct demand testing, and analyze competition.</p>
-                    </div>
-                    <div class="service-card dark-card scroll-reveal" style="padding: 2rem; transition-delay: 150ms;">
-                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #ffffff;">4. Model Decision</h3>
-                        <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6;">Select the best path: Support Service, Inside Dealer, or Direct Dealer.</p>
-                    </div>
-                    <div class="service-card dark-card scroll-reveal" style="padding: 2rem; transition-delay: 200ms;">
-                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #ffffff;">5. Deal Structuring</h3>
-                        <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6;">Finalize pricing strategy, contracts, agreements, and payment terms.</p>
-                    </div>
-                    <div class="service-card dark-card scroll-reveal" style="padding: 2rem; transition-delay: 250ms;">
-                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #ffffff;">6. Logistics Execution</h3>
-                        <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6;">Arrange shipping, customs clearance, and delivery to warehouse.</p>
-                    </div>
-                    <div class="service-card dark-card scroll-reveal" style="padding: 2rem; transition-delay: 300ms;">
-                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #ffffff;">7. Sales & Distribution</h3>
-                        <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6;">Deliver directly to buyers, expand market reach, and scale volumes.</p>
-                    </div>
-                    <div class="service-card dark-card scroll-reveal" style="padding: 2rem; transition-delay: 350ms;">
-                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: #ffffff;">8. Brand Development</h3>
-                        <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6;">(Direct Dealer) Create identity, packaging, and marketing campaigns.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Request a Quote Section -->
-        <section class="request-quote-section mid-section section-light">
-            <!-- Soft wavy top divider lines -->
-            <div class="quote-waves-bg" aria-hidden="true">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" preserveAspectRatio="none">
-                    <path class="wave-line wl-1" d="M0,20 C240,40 480,0  720,20 S1200,40 1440,20"/>
-                    <path class="wave-line wl-2" d="M0,30 C240,50 480,10 720,30 S1200,50 1440,30"/>
-                    <path class="wave-line wl-3" d="M0,40 C240,60 480,20 720,40 S1200,60 1440,40"/>
-                    <path class="wave-line wl-4" d="M0,50 C240,70 480,30 720,50 S1200,70 1440,50"/>
-                    <path class="wave-line wl-5" d="M0,60 C240,80 480,40 720,60 S1200,80 1440,60"/>
-                </svg>
-            </div>
-            <div class="section-container">
-                <div class="quote-split-layout">
-                    <!-- Left Column: Content -->
-                    <div class="quote-text-col scroll-reveal">
-                        <span class="section-badge">GET IN TOUCH</span>
-                        <h2>Request a Quote</h2>
-                        <p class="subtitle">We plan every shipment in advance to ensure accurate routing, secure handling, and on-time delivery worldwide.</p>
-                        <a href="tel:+447553599805" class="btn-phone-animated">
-                            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                            </svg>
-                            <span>+44 7553 599805</span>
-                        </a>
-                        <div class="quote-globe-bg-wrap">
-                            <div class="quote-globe-container" id="quote-globe-container"></div>
-                        </div>
-                    </div>
-                    <!-- Right Column: Enquiry Form -->
-                    <div class="quote-globe-col scroll-reveal" style="z-index: 20;">
-                        <form action="mailto:hillhexo.global@gmail.com" method="post" enctype="text/plain" class="premium-form">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="quote-name">Name</label>
-                                    <input type="text" id="quote-name" name="name" placeholder="John Doe" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="quote-email">Email</label>
-                                    <input type="email" id="quote-email" name="email" placeholder="john@example.com" required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="quote-phone">Phone Number</label>
-                                    <input type="tel" id="quote-phone" name="phone" placeholder="+44 7553 599805" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="quote-priority">Priority Status</label>
-                                    <select id="quote-priority" name="priority" required style="background: #f8fafc; border: 1px solid rgba(29, 67, 138, 0.15); border-radius: 12px; padding: 0.9rem 1.2rem; color: #0f172a; font-family: 'Outfit', sans-serif; font-size: 0.95rem; transition: all 0.3s ease; width: 100%; outline: none; cursor: pointer;">
-                                        <option value="" disabled selected>Select priority</option>
-                                        <option value="Low">Low</option>
-                                        <option value="Medium">Medium</option>
-                                        <option value="Urgent">Urgent</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="quote-message">Message Enquiry Box</label>
-                                <textarea id="quote-message" name="message" rows="4" placeholder="Describe your shipment details or inquiries..." required></textarea>
-                            </div>
-                            <button type="submit" class="btn-submit">
-                                <span>Send Enquiry</span>
-                                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- REDESIGNED MEGA FOOTER -->
         <footer class="mega-footer">
@@ -338,30 +351,20 @@
                                 <img src="images/logos.png" alt="Hillhexo Logo">
                                 <h2>HILLHEX<span class="gold-text">O</span></h2>
                             </div>
-                            <p class="footer-desc">Delivering smart logistics solutions<br>that connect businesses to the world.<br>Fast, reliable, and always on-time.</p>
+                            <button class="btn-primary open-contact-modal" style="margin-top: 2rem;">Tap to Connect Us</button>
                         </div>
                     </div>
 
-                    <!-- Right side: Navigation stack & Subscribe Form -->
+                    <!-- Right side: Subscribe Form -->
                     <div class="footer-right-col">
-                        <div class="footer-nav-container">
-                            <span class="footer-nav-title">Navigation</span>
-                            <nav class="footer-nav-stack">
-                                <a href="ai-agency-hero.html">HOME</a>
-                                <a href="about.html">ABOUT US</a>
-                                <a href="services.html">SERVICES</a>
-                                <a href="contact.html">CONTACT</a>
-                            </nav>
-                        </div>
-                        
                         <!-- Newsletter Subscription Block -->
                         <div class="footer-subscribe-section">
-                            <p class="subscribe-text">Subscribe to be in touch with latest updates.</p>
+                            <p class="subscribe-text">Subscribe to receive our latest updates and insights.</p>
                             <form class="footer-subscribe-form" onsubmit="event.preventDefault();">
                                 <div class="subscribe-input-wrapper">
-                                    <input type="email" placeholder="Email address" required class="subscribe-input">
+                                    <input type="email" placeholder="Enter your email address" required class="subscribe-input">
                                     <button type="submit" class="subscribe-btn" aria-label="Subscribe">
-                                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <line x1="22" y1="2" x2="11" y2="13"></line>
                                             <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                                         </svg>
@@ -369,18 +372,6 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
-                </div>
-
-                <div class="footer-bottom-divider"></div>
-
-                <!-- Legal/Copyright bottom row -->
-                <div class="footer-legal">
-                    <div class="legal-left">© 2026 HILLHEXO LTD. All rights reserved.</div>
-                    <div class="legal-right">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
-                        <a href="#">Cookie Policy</a>
                     </div>
                 </div>
             </div>
@@ -426,15 +417,18 @@
                 threshold: 0.1
             };
 
-            const observer = new IntersectionObserver((entries, obs) => {
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
 
-            const elementsToReveal = document.querySelectorAll('.scroll-reveal');
+            const elementsToReveal = document.querySelectorAll(
+                '.scroll-reveal, .card-reveal, .timeline-item, .section-header-modern, .sticky-scroll-block, .timeline-step-row, .workflow-feature-card, .timeline-serpentine-container'
+            );
             elementsToReveal.forEach(el => {
                 observer.observe(el);
             });
@@ -493,6 +487,255 @@
                 });
             });
         });
+    </script>
+    <style>
+    /* Card and list styling to prevent caching issues */
+    .service-card {
+        background: #ffffff;
+        border: 1px solid rgba(29, 67, 138, 0.08);
+        border-radius: 24px;
+        padding: 2.5rem 2rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        display: flex;
+        flex-direction: column;
+    }
+    .service-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+        border-color: rgba(29, 67, 138, 0.2);
+    }
+    .services-bullets {
+        color: #a4adc1;
+        text-align: left;
+        margin-left: 1.5rem;
+        line-height: 1.7;
+        margin-top: 1.2rem;
+        position: relative;
+        z-index: 2;
+        padding-left: 0;
+    }
+    .services-bullets li {
+        margin-bottom: 0.6rem;
+        font-size: 0.95rem;
+    }
+    .services-bullets li::marker {
+        color: #2d6bef; /* Vibrant brand blue accent */
+    }
+
+    /* Premium subscribe form styles override */
+    .subscribe-input-wrapper {
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 50px !important;
+        padding: 4px 6px 4px 16px !important;
+        transition: all 0.3s ease !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    .subscribe-input-wrapper:focus-within {
+        border-color: #2d6bef !important;
+        background: rgba(255, 255, 255, 0.06) !important;
+        box-shadow: 0 0 15px rgba(45, 107, 239, 0.2) !important;
+    }
+    .subscribe-input {
+        background: transparent !important;
+        border: none !important;
+        color: #ffffff !important;
+        font-family: 'Outfit', sans-serif !important;
+        font-size: 0.95rem !important;
+        padding: 6px 0 !important;
+        width: 100% !important;
+        outline: none !important;
+    }
+    .subscribe-input::placeholder {
+        color: rgba(255, 255, 255, 0.4) !important;
+    }
+    .subscribe-btn {
+        background: #2d6bef !important;
+        border: none !important;
+        color: #ffffff !important;
+        cursor: pointer !important;
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        transition: all 0.3s ease !important;
+        flex-shrink: 0 !important;
+        margin: 0 0 0 8px !important;
+    }
+    .subscribe-btn:hover {
+        background: #154ecb !important;
+        transform: scale(1.08) !important;
+        color: #ffffff !important;
+    }
+
+    /* Contact Modal Inline CSS to prevent caching issues */
+    .contact-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(2, 5, 15, 0.85);
+        backdrop-filter: blur(8px);
+        z-index: 9999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+    .contact-modal-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .contact-modal-content {
+        background: #ffffff;
+        border-radius: 24px;
+        width: 100%;
+        max-width: 1200px;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        transform: translateY(30px);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    .contact-modal-overlay.active .contact-modal-content {
+        transform: translateY(0);
+    }
+    .close-modal-btn {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        background: #f1f5f9;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #64748b;
+        z-index: 100;
+        transition: all 0.3s ease;
+    }
+    .close-modal-btn:hover {
+        background: #e2e8f0;
+        color: #0f172a;
+        transform: rotate(90deg);
+    }
+    </style>
+    <!-- Contact Modal -->
+    <div id="contactModal" class="contact-modal-overlay">
+        <div class="contact-modal-content">
+            <button class="close-modal-btn" id="closeContactModal" aria-label="Close Modal">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <section class="request-quote-section section-light" style="padding-top: 3rem; margin-top: 0; border-radius: 24px;">
+                <div class="section-container">
+                    <div class="section-header-modern scroll-reveal" style="text-align: center; margin-bottom: 3rem;">
+                        <span class="section-badge" style="justify-content: center;">GET IN TOUCH</span>
+                    </div>
+                    <div class="quote-split-layout">
+                        <!-- Left Column: Content -->
+                        <div class="quote-text-col scroll-reveal">
+                            <div class="quote-globe-bg-wrap">
+                                <div class="quote-globe-container" id="quote-globe-container"></div>
+                            </div>
+                        </div>
+                        <!-- Right Column: Enquiry Form -->
+                        <div class="quote-globe-col scroll-reveal" style="z-index: 20;">
+                            <form action="mailto:hillhexo.global@gmail.com" method="post" enctype="text/plain" class="premium-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="quote-name">Name</label>
+                                        <input type="text" id="quote-name" name="name" placeholder="John Doe" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="quote-email">Email</label>
+                                        <input type="email" id="quote-email" name="email" placeholder="john@example.com" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="quote-phone">Phone Number</label>
+                                        <input type="tel" id="quote-phone" name="phone" placeholder="+44 7553 599805" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="quote-priority">Priority Status</label>
+                                        <select id="quote-priority" name="priority" required style="background: #f8fafc; border: 1px solid rgba(29, 67, 138, 0.15); border-radius: 12px; padding: 0.9rem 1.2rem; color: #0f172a; font-family: 'Outfit', sans-serif; font-size: 0.95rem; transition: all 0.3s ease; width: 100%; outline: none; cursor: pointer;">
+                                            <option value="" disabled selected>Select priority</option>
+                                            <option value="Low">Low</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="Urgent">Urgent</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quote-message">Message Enquiry Box</label>
+                                    <textarea id="quote-message" name="message" rows="4" placeholder="Describe your shipment details or inquiries..." required></textarea>
+                                </div>
+                                <button type="submit" class="btn-submit">
+                                    <span>Send Enquiry</span>
+                                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('contactModal');
+        const openBtns = document.querySelectorAll('.open-contact-modal');
+        const closeBtn = document.getElementById('closeContactModal');
+
+        if(modal && closeBtn) {
+            openBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            modal.addEventListener('click', (e) => {
+                if(e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            const form = modal.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    setTimeout(() => {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                        form.reset();
+                    }, 500);
+                });
+            }
+        }
+    });
     </script>
 </body>
 </html>

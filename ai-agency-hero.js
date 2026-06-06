@@ -29,26 +29,25 @@ document.addEventListener('click', (e) => {
         noiseTimeScale: 0.03,
         noiseMaxStrength: 2.5,
         colorScheme: 'fire',
-        morphDuration: 3500,
-        particleSizeRange: [0.06, 0.2],
+        morphDuration: 2000,
+        particleSizeRange: [0.08, 0.24],
         starCount: 6000,
         bloomStrength: 1.2,
         bloomRadius: 0.4,
         bloomThreshold: 0.1,
-        idleFlowStrength: 0.2,
-        idleFlowSpeed: 0.072, // 20% increase (from 0.06)
-        idleRotationSpeed: 0.018, // 20% increase (from 0.015)
+        idleFlowStrength: 0.5,
+        idleFlowSpeed: 0.22, // increased speed
+        idleRotationSpeed: 0.05, // increased speed
         morphSizeFactor: 0.4,
         morphBrightnessFactor: 0.5
     };
 
     const SHAPES = [
-        { name: 'Helix', generator: generateHelix },
-        { name: 'Globe', generator: generateGlobe },
-        { name: 'Hyperboloid', generator: generateHyperboloid },
-        { name: 'Crystal', generator: generateCrystal },
         { name: 'Blackhole', generator: generateBlackhole },
-        { name: 'Torus', generator: generateTorus }
+        { name: 'Torus', generator: generateTorus },
+        { name: 'Helix', generator: generateHelix },
+        { name: 'Hyperboloid', generator: generateHyperboloid },
+        { name: 'Crystal', generator: generateCrystal }
     ];
     let currentShapeIndex = 0;
 
@@ -105,85 +104,7 @@ document.addEventListener('click', (e) => {
         return points;
     }
 
-    function generateGlobe(count, size) {
-        const points = new Float32Array(count * 3);
-        let index = 0;
-        const radius = size * 0.65;
-        
-        const shellCount = Math.floor(count * 0.50);
-        const gridCount = Math.floor(count * 0.35);
-        const orbitCount = count - shellCount - gridCount;
 
-        // 1. Sphere Shell
-        for (let i = 0; i < shellCount; i++) {
-            const u = Math.random();
-            const v = Math.random();
-            const theta = u * Math.PI * 2;
-            const phi = Math.acos(2 * v - 1);
-            
-            const x = radius * Math.sin(phi) * Math.cos(theta);
-            const y = radius * Math.sin(phi) * Math.sin(theta);
-            const z = radius * Math.cos(phi);
-
-            points[index++] = x;
-            points[index++] = y;
-            points[index++] = z;
-        }
-
-        // 2. Latitude/Longitude Grid Lines
-        const latCount = 6;
-        const lonCount = 8;
-        for (let i = 0; i < gridCount; i++) {
-            if (Math.random() < 0.4) {
-                const latIdx = Math.floor(Math.random() * latCount);
-                const latY = radius * Math.sin(((latIdx + 0.5) / latCount - 0.5) * Math.PI);
-                const latRad = Math.sqrt(radius * radius - latY * latY);
-                const angle = Math.random() * Math.PI * 2;
-                
-                points[index++] = latRad * Math.cos(angle);
-                points[index++] = latY;
-                points[index++] = latRad * Math.sin(angle);
-            } else {
-                const lonIdx = Math.floor(Math.random() * lonCount);
-                const theta = (lonIdx / lonCount) * Math.PI * 2;
-                const phi = Math.random() * Math.PI;
-                
-                points[index++] = radius * Math.sin(phi) * Math.cos(theta);
-                points[index++] = radius * Math.cos(phi);
-                points[index++] = radius * Math.sin(phi) * Math.sin(theta);
-            }
-        }
-
-        // 3. Inclined Orbit Ring
-        const tiltX = 0.5;
-        const tiltZ = 0.3;
-        const cosX = Math.cos(tiltX), sinX = Math.sin(tiltX);
-        const cosZ = Math.cos(tiltZ), sinZ = Math.sin(tiltZ);
-
-        for (let i = 0; i < orbitCount; i++) {
-            const angle = Math.random() * Math.PI * 2;
-            const r = radius * 1.35;
-            let lx = r * Math.cos(angle);
-            let ly = 0;
-            let lz = r * Math.sin(angle);
-
-            // Rotate around Z axis (roll)
-            let x1 = lx * cosZ - ly * sinZ;
-            let y1 = lx * sinZ + ly * cosZ;
-            let z1 = lz;
-
-            // Rotate around X axis (pitch)
-            let x2 = x1;
-            let y2 = y1 * cosX - z1 * sinX;
-            let z2 = y1 * sinX + z1 * cosX;
-
-            points[index++] = x2;
-            points[index++] = y2;
-            points[index++] = z2;
-        }
-
-        return points;
-    }
 
     function generateHyperboloid(count, size) {
         const points = new Float32Array(count * 3);
@@ -329,7 +250,7 @@ document.addEventListener('click', (e) => {
         controls.minDistance = 4;
         controls.maxDistance = 70;
         controls.autoRotate = true;
-        controls.autoRotateSpeed = 2.88;
+        controls.autoRotateSpeed = 8.0;
         controls.enableZoom = false;
 
         scene.add(new THREE.AmbientLight(0x505070));
@@ -386,7 +307,7 @@ document.addEventListener('click', (e) => {
             if (!isMorphing) {
                 triggerMorph();
             }
-        }, 12000);
+        }, 7000);
     }
 
     function setupPostProcessing() {
@@ -489,7 +410,6 @@ document.addEventListener('click', (e) => {
         particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
         particlesMaterial = new THREE.ShaderMaterial({
-            uniforms: { pointTexture: { value: createStarTexture() } },
             vertexShader: `
                 attribute float size;
                 attribute float opacity;
@@ -502,23 +422,48 @@ document.addEventListener('click', (e) => {
                     vOpacity = opacity;
                     vEffectStrength = aEffectStrength;
                     vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-                    gl_PointSize = 2.5;
+                    // size attenuation: scale size inversely with distance (Z depth)
+                    gl_PointSize = size * 0.8 * (300.0 / -mvPosition.z);
                     gl_Position = projectionMatrix * mvPosition;
                 }`,
             fragmentShader: `
-                uniform sampler2D pointTexture;
                 varying vec3 vColor;
                 varying float vOpacity;
                 varying float vEffectStrength;
                 void main() {
-                    float alpha = texture2D(pointTexture, gl_PointCoord).a;
-                    if (alpha < 0.05) discard;
-                    vec3 finalColor = vColor * (1.0 + vEffectStrength * ${CONFIG.morphBrightnessFactor.toFixed(2)});
-                    gl_FragColor = vec4(finalColor, alpha * vOpacity);
+                    // Compute circular coordinates from gl_PointCoord (from 0 to 1)
+                    vec2 uv = gl_PointCoord - vec2(0.5);
+                    float distSq = dot(uv, uv);
+                    if (distSq > 0.25) discard; // Crop point into a perfect circle
+
+                    // Compute normal vectors on the sphere surface
+                    float z = sqrt(0.25 - distSq);
+                    vec3 normal = normalize(vec3(uv, z));
+
+                    // Directional lighting from top-right-front spotlight source
+                    vec3 lightDir = normalize(vec3(0.5, 0.7, 0.5));
+                    float diff = max(dot(normal, lightDir), 0.0);
+                    
+                    // Soft ambient lighting
+                    vec3 ambient = vec3(0.25);
+                    
+                    // Combine colors with diffuse + ambient reflection
+                    vec3 finalColor = vColor * (diff * 0.8 + ambient);
+
+                    // Add specular highlights for shiny 3D sphere look
+                    vec3 viewDir = vec3(0.0, 0.0, 1.0);
+                    vec3 reflectDir = reflect(-lightDir, normal);
+                    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 16.0);
+                    finalColor += vec3(0.35) * spec;
+
+                    // Boost color slightly during morph transition
+                    finalColor *= (1.0 + vEffectStrength * ${CONFIG.morphBrightnessFactor.toFixed(2)});
+
+                    gl_FragColor = vec4(finalColor, vOpacity);
                 }`,
-            blending: THREE.AdditiveBlending,
+            blending: THREE.NormalBlending,
             depthTest: true,
-            depthWrite: false,
+            depthWrite: true,
             transparent: true,
             vertexColors: true
         });
@@ -528,20 +473,41 @@ document.addEventListener('click', (e) => {
     }
 
     function updateColorArray(colors, positionsArray) {
-        const colorScheme = COLOR_SCHEMES[CONFIG.colorScheme];
-        const center = new THREE.Vector3(0, 0, 0);
-        const maxRadius = CONFIG.shapeSize * 1.2;
+        const c = new THREE.Color();
         for (let i = 0; i < CONFIG.particleCount; i++) {
             const i3 = i * 3;
             tempVec.fromArray(positionsArray, i3);
-            const dist = tempVec.distanceTo(center);
-            let hue = CONFIG.colorScheme === 'rainbow'
-                ? ((tempVec.x / maxRadius + 1) / 2 * 120 + (tempVec.y / maxRadius + 1) / 2 * 120 + (tempVec.z / maxRadius + 1) / 2 * 120) % 360
-                : THREE.MathUtils.mapLinear(dist, 0, maxRadius, colorScheme.startHue, colorScheme.endHue);
-            const noiseValue = (noise3D(tempVec.x * 0.15, tempVec.y * 0.15, tempVec.z * 0.15) + 1) * 0.5;
-            const saturation = THREE.MathUtils.clamp(colorScheme.saturation * (0.85 + noiseValue * 0.25), 0, 1);
-            const lightness = THREE.MathUtils.clamp(colorScheme.lightness * (0.9 + noiseValue * 0.2), 0.1, 0.9);
-            new THREE.Color().setHSL(hue / 360, saturation, lightness).toArray(colors, i3);
+            
+            // Generate noise value between 0.0 and 1.0 based on spatial coordinates
+            const n = (noise3D(tempVec.x * 0.1, tempVec.y * 0.1, tempVec.z * 0.1) + 1.0) * 0.5;
+            
+            // Add slight random variation to the noise per particle for organic texture
+            const jitter = (Math.random() - 0.5) * 0.08;
+            const nJittered = THREE.MathUtils.clamp(n + jitter, 0.0, 1.0);
+
+            if (nJittered < 0.40) {
+                // 1. Navy Blue - organic shades of deep blue-indigo
+                c.setRGB(
+                    0.04 + Math.random() * 0.06,
+                    0.12 + Math.random() * 0.10,
+                    0.50 + Math.random() * 0.20
+                );
+            } else if (nJittered < 0.72) {
+                // 2. Violet / Purple - shades of medium violet
+                c.setRGB(
+                    0.32 + Math.random() * 0.12,
+                    0.20 + Math.random() * 0.08,
+                    0.48 + Math.random() * 0.16
+                );
+            } else {
+                // 3. Cream / Off-white - shades of warm beige
+                c.setRGB(
+                    0.86 + Math.random() * 0.08,
+                    0.83 + Math.random() * 0.06,
+                    0.79 + Math.random() * 0.06
+                );
+            }
+            c.toArray(colors, i3);
         }
     }
 
