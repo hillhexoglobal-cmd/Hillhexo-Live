@@ -489,17 +489,23 @@
                 });
             });
 
-            // Horizontal workflow auto-scroll functionality
+            // Horizontal workflow auto-scroll & pointer-scroll functionality
             const timelineContainer = document.querySelector('.horizontal-timeline-container');
             const timelineTrack = document.querySelector('.horizontal-timeline-track');
             if (timelineContainer && timelineTrack) {
                 const stepCards = timelineTrack.querySelectorAll('.horizontal-step-card');
                 let currentIndex = 0;
                 let autoScrollInterval = null;
+                let inactivityTimeout = null;
                 let isHovered = false;
 
+                // Drag-to-scroll variables
+                let isDown = false;
+                let startX;
+                let scrollLeftVal;
+
                 const scrollToCard = (index) => {
-                    if (window.innerWidth <= 768) return; // Disable vertical auto-scroll on mobile
+                    if (window.innerWidth <= 768) return; // Disable on mobile vertical layout
 
                     const card = stepCards[index];
                     if (!card) return;
@@ -529,7 +535,7 @@
                 const startAutoScroll = () => {
                     stopAutoScroll();
                     autoScrollInterval = setInterval(() => {
-                        if (!isHovered && window.innerWidth > 768) {
+                        if (!isHovered && !isDown && window.innerWidth > 768) {
                             currentIndex = (currentIndex + 1) % stepCards.length;
                             scrollToCard(currentIndex);
                         }
@@ -543,25 +549,93 @@
                     }
                 };
 
-                timelineContainer.addEventListener('mouseenter', () => {
-                    isHovered = true;
+                const resetInactivityTimer = () => {
+                    if (inactivityTimeout) {
+                        clearTimeout(inactivityTimeout);
+                    }
+                    stopAutoScroll();
+                    // Resume auto scrolling after 5 seconds of inactivity
+                    inactivityTimeout = setTimeout(() => {
+                        if (!isHovered && !isDown && window.innerWidth > 768) {
+                            startAutoScroll();
+                        }
+                    }, 5000);
+                };
+
+                // Mouse Wheel to Horizontal Translation
+                timelineContainer.addEventListener('wheel', (e) => {
+                    if (window.innerWidth > 768) {
+                        if (e.deltaY !== 0) {
+                            e.preventDefault(); // Stop vertical page scroll
+                            timelineContainer.scrollLeft += e.deltaY * 0.8; // Scroll horizontally instead
+                            resetInactivityTimer();
+                        }
+                    }
+                }, { passive: false });
+
+                // Mouse Click & Drag (Grab-to-Scroll)
+                timelineContainer.addEventListener('mousedown', (e) => {
+                    if (window.innerWidth > 768) {
+                        isDown = true;
+                        timelineContainer.classList.add('grabbing');
+                        startX = e.pageX - timelineContainer.offsetLeft;
+                        scrollLeftVal = timelineContainer.scrollLeft;
+                        stopAutoScroll();
+                    }
                 });
 
                 timelineContainer.addEventListener('mouseleave', () => {
+                    if (isDown) {
+                        isDown = false;
+                        timelineContainer.classList.remove('grabbing');
+                        resetInactivityTimer();
+                    }
                     isHovered = false;
+                    resetInactivityTimer();
                 });
 
-                // Init auto-scroll and highlight first card
+                timelineContainer.addEventListener('mouseup', () => {
+                    if (isDown) {
+                        isDown = false;
+                        timelineContainer.classList.remove('grabbing');
+                        resetInactivityTimer();
+                    }
+                });
+
+                timelineContainer.addEventListener('mousemove', (e) => {
+                    if (!isDown || window.innerWidth <= 768) return;
+                    e.preventDefault();
+                    const x = e.pageX - timelineContainer.offsetLeft;
+                    const walk = (x - startX) * 1.5; // Drag scroll multiplier
+                    timelineContainer.scrollLeft = scrollLeftVal - walk;
+                });
+
+                // Hover & Touch Events
+                timelineContainer.addEventListener('mouseenter', () => {
+                    isHovered = true;
+                    stopAutoScroll();
+                });
+
+                timelineContainer.addEventListener('touchstart', () => {
+                    stopAutoScroll();
+                }, { passive: true });
+
+                timelineContainer.addEventListener('touchend', () => {
+                    resetInactivityTimer();
+                }, { passive: true });
+
+                // Delayed start (4800ms) to wait for the preloader to fully fade out
                 setTimeout(() => {
                     if (window.innerWidth > 768) {
                         scrollToCard(0);
                     }
                     startAutoScroll();
-                }, 500);
+                }, 4800);
 
                 window.addEventListener('resize', () => {
                     if (window.innerWidth <= 768) {
                         stopAutoScroll();
+                        if (inactivityTimeout) clearTimeout(inactivityTimeout);
                         timelineContainer.scrollTo({ left: 0 });
                         stepCards.forEach(c => c.classList.remove('active-step'));
                     } else {
@@ -646,11 +720,20 @@
     /* Dark Theme Operational Workflow horizontal timeline styles */
     .horizontal-timeline-container {
         width: 100%;
-        overflow-x: hidden;
+        overflow-x: auto;
         overflow-y: hidden;
         padding: 2.5rem 0 1rem 0;
         scroll-behavior: smooth;
         display: block;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        cursor: grab;
+    }
+    .horizontal-timeline-container::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+    .horizontal-timeline-container.grabbing {
+        cursor: grabbing;
     }
 
 
