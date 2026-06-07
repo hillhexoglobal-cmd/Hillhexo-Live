@@ -21,6 +21,8 @@
     <!-- Animation and Noise Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+    <!-- Translations Script -->
+    <script src="translations.js"></script>
 </head>
 <body>
     <!-- Premium Logo Intro Preloader -->
@@ -65,10 +67,10 @@
             
             <!-- Center: Capsule Nav Pill -->
             <nav class="nav-capsule">
-                <a href="ai-agency-hero.html" class="active">Home</a>
+                <a href="ai-agency-hero.html" class="active" data-i18n="nav_home">Home</a>
 
-                <a href="services.html">Services</a>
-                <a href="contact.html">Contact</a>
+                <a href="services.html" data-i18n="nav_services">Services</a>
+                <a href="contact.html" data-i18n="nav_contact">Contact</a>
 
 
                 <!-- Mobile Only Language Switcher -->
@@ -87,6 +89,7 @@
                     <div class="lang-dropdown">
                         <a href="#" class="lang-option active" data-lang="EN">English</a>
                         <a href="#" class="lang-option" data-lang="NL">Dutch</a>
+                        <a href="#" class="lang-option" data-lang="DE">German</a>
                     </div>
                 </div>
             </nav>
@@ -109,6 +112,7 @@
                     <div class="lang-dropdown">
                         <a href="#" class="lang-option active" data-lang="EN">English</a>
                         <a href="#" class="lang-option" data-lang="NL">Dutch</a>
+                        <a href="#" class="lang-option" data-lang="DE">German</a>
                     </div>
                 </div>
                 
@@ -125,11 +129,11 @@
     <section class="split-hero">
         <div class="hero-left">
             <div class="hero-content">
-                <h1>CONNECTING THE WORLD,<br><span class="gold-text">DELIVERING EXCELLENCE</span></h1>
-                <p class="description">End-to-end logistics solutions tailored to your business. Fast, reliable and secure &ndash; across the globe.</p>
+                <h1 data-i18n-html="hero_title">CONNECTING THE WORLD,<br><span class="gold-text">DELIVERING EXCELLENCE</span></h1>
+                <p class="description" data-i18n="hero_desc">End-to-end logistics solutions tailored to your business. Fast, reliable and secure &ndash; across the globe.</p>
                 <div class="hero-explore-btn-wrap">
                     <a href="#about" class="btn-explore" id="exploreBtn">
-                        <span>Explore More</span>
+                        <span data-i18n="hero_btn_explore">Explore More</span>
                         <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="explore-arrow">
                             <line x1="12" y1="5" x2="12" y2="19"></line>
                             <polyline points="19 12 12 19 5 12"></polyline>
@@ -152,20 +156,20 @@
         <div class="logistics-marquee">
             <div class="marquee-track">
                 <div class="marquee-group">
-                    <span>Global Supply Chain</span> <span class="marquee-dot"></span>
-                    <span>Freight Forwarding</span> <span class="marquee-dot"></span>
-                    <span>Delivering Excellence</span> <span class="marquee-dot"></span>
-                    <span>Strategic Distribution</span> <span class="marquee-dot"></span>
-                    <span>Ocean & Air Cargo</span> <span class="marquee-dot"></span>
-                    <span>Next-Gen Logistics</span> <span class="marquee-dot"></span>
+                    <span data-i18n="marquee_chain">Global Supply Chain</span> <span class="marquee-dot"></span>
+                    <span data-i18n="marquee_forwarding">Freight Forwarding</span> <span class="marquee-dot"></span>
+                    <span data-i18n="marquee_delivering">Delivering Excellence</span> <span class="marquee-dot"></span>
+                    <span data-i18n="marquee_dist">Strategic Distribution</span> <span class="marquee-dot"></span>
+                    <span data-i18n="marquee_cargo">Ocean & Air Cargo</span> <span class="marquee-dot"></span>
+                    <span data-i18n="marquee_nextgen">Next-Gen Logistics</span> <span class="marquee-dot"></span>
                 </div>
                 <div class="marquee-group" aria-hidden="true">
-                    <span>Global Supply Chain</span> <span class="marquee-dot"></span>
-                    <span>Freight Forwarding</span> <span class="marquee-dot"></span>
-                    <span>Delivering Excellence</span> <span class="marquee-dot"></span>
-                    <span>Strategic Distribution</span> <span class="marquee-dot"></span>
-                    <span>Ocean & Air Cargo</span> <span class="marquee-dot"></span>
-                    <span>Next-Gen Logistics</span> <span class="marquee-dot"></span>
+                    <span data-i18n="marquee_chain">Global Supply Chain</span> <span class="marquee-dot"></span>
+                    <span data-i18n="marquee_forwarding">Freight Forwarding</span> <span class="marquee-dot"></span>
+                    <span data-i18n="marquee_delivering">Delivering Excellence</span> <span class="marquee-dot"></span>
+                    <span data-i18n="marquee_dist">Strategic Distribution</span> <span class="marquee-dot"></span>
+                    <span data-i18n="marquee_cargo">Ocean & Air Cargo</span> <span class="marquee-dot"></span>
+                    <span data-i18n="marquee_nextgen">Next-Gen Logistics</span> <span class="marquee-dot"></span>
                 </div>
             </div>
         </div>
@@ -174,9 +178,9 @@
         <section id="about" class="mid-section section-light">
             <div class="section-container">
                 <div class="section-header-modern">
-                    <span class="section-badge">WHO WE ARE</span>
-                    <h2>MISSION <span class="gold-text">&</span> VISION</h2>
-                    <p class="subtitle">Transforming global trade by making high-potential products accessible, scalable, and successful across borders.</p>
+                    <span class="section-badge" data-i18n="about_badge">WHO WE ARE</span>
+                    <h2 data-i18n-html="about_title">MISSION <span class="gold-text">&</span> VISION</h2>
+                    <p class="subtitle" data-i18n="about_subtitle">Transforming global trade by making high-potential products accessible, scalable, and successful across borders.</p>
                 </div>
                 <!-- Massive Center Hanging Container -->
                 <div class="about-hanging-row scroll-reveal">
@@ -189,14 +193,14 @@
                     <!-- Left: Our Vision -->
                     <div class="about-card card-reveal">
                         <div class="card-watermark">01</div>
-                        <h3>Our Vision</h3>
-                        <p>To become a leading global trade enabler and product development powerhouse connecting emerging products with high-demand markets.</p>
+                        <h3 data-i18n="about_vision_title">Our Vision</h3>
+                        <p data-i18n="about_vision_desc">To become a leading global trade enabler and product development powerhouse connecting emerging products with high-demand markets.</p>
                     </div>
                     <!-- Right: The Concept -->
                     <div class="about-card card-reveal">
                         <div class="card-watermark">02</div>
-                        <h3>The Concept</h3>
-                        <p>HILLHEXO LTD acts as a bridge between product origin and market demand. We identify products with strong potential, facilitate logistics, build supply chains, and create or expand markets.</p>
+                        <h3 data-i18n="about_concept_title">The Concept</h3>
+                        <p data-i18n="about_concept_desc">HILLHEXO LTD acts as a bridge between product origin and market demand. We identify products with strong potential, facilitate logistics, build supply chains, and create or expand markets.</p>
                     </div>
                 </div>
             </div>
@@ -210,8 +214,8 @@
         <section class="mid-section section-dark">
             <div class="section-container">
                 <div class="section-header-modern scroll-reveal">
-                    <span class="section-badge">WHY CHOOSE US</span>
-                    <h2>Our Competitive Advantage</h2>
+                    <span class="section-badge" data-i18n="comp_badge">WHY CHOOSE US</span>
+                    <h2 data-i18n="comp_title">Our Competitive Advantage</h2>
                 </div>
 
                 <div class="services-grid competitive-grid">
@@ -219,32 +223,32 @@
                         <div class="service-icon">
                             <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                         </div>
-                        <h3>Hybrid Model</h3>
-                        <p style="line-height: 1.6;">A unique combination of logistics support, smart trading, and direct brand creation under one roof.</p>
+                        <h3 data-i18n="comp_card1_title">Hybrid Model</h3>
+                        <p style="line-height: 1.6;" data-i18n="comp_card1_desc">A unique combination of logistics support, smart trading, and direct brand creation under one roof.</p>
                     </div>
 
                     <div class="service-card scroll-reveal" style="transition-delay: 100ms;">
                         <div class="service-icon">
                             <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
                         </div>
-                        <h3>Market Intelligence</h3>
-                        <p style="line-height: 1.6;">Data-driven product selection ensures we only scale products with high demand and low supply gaps.</p>
+                        <h3 data-i18n="comp_card2_title">Market Intelligence</h3>
+                        <p style="line-height: 1.6;" data-i18n="comp_card2_desc">Data-driven product selection ensures we only scale products with high demand and low supply gaps.</p>
                     </div>
 
                     <div class="service-card scroll-reveal" style="transition-delay: 200ms;">
                         <div class="service-icon">
                             <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                         </div>
-                        <h3>Flexibility</h3>
-                        <p style="line-height: 1.6;">We successfully adapt our models to work with both emerging, small suppliers and large-scale enterprises.</p>
+                        <h3 data-i18n="comp_card3_title">Flexibility</h3>
+                        <p style="line-height: 1.6;" data-i18n="comp_card3_desc">We successfully adapt our models to work with both emerging, small suppliers and large-scale enterprises.</p>
                     </div>
 
                     <div class="service-card scroll-reveal" style="transition-delay: 300ms;">
                         <div class="service-icon">
                             <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16v-2"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                         </div>
-                        <h3>End-to-End Control</h3>
-                        <p style="line-height: 1.6;">From initial sourcing to final market delivery, we manage the full supply chain to guarantee success.</p>
+                        <h3 data-i18n="comp_card4_title">End-to-End Control</h3>
+                        <p style="line-height: 1.6;" data-i18n="comp_card4_desc">From initial sourcing to final market delivery, we manage the full supply chain to guarantee success.</p>
                     </div>
                 </div>
             </div>
@@ -254,9 +258,9 @@
         <section class="mid-section section-light">
             <div class="section-container">
                 <div class="section-header-modern scroll-reveal">
-                    <span class="section-badge">GLOBAL REACH</span>
-                    <h2>Market Opportunity</h2>
-                    <p class="subtitle">
+                    <span class="section-badge" data-i18n="market_badge">GLOBAL REACH</span>
+                    <h2 data-i18n="market_title">Market Opportunity</h2>
+                    <p class="subtitle" data-i18n="market_desc">
                         Global supply is increasing, but market access remains fragmented. We leverage government-free trade deals to bring better opportunities to the global market, solving failures caused by poor logistics, weak branding, or entry strategy.
                     </p>
                 </div>
@@ -266,16 +270,16 @@
                         <div class="service-icon">
                             <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                         </div>
-                        <h3>Target Markets</h3>
-                        <p style="line-height: 1.6;">We focus on the UK, European Union, and India, while actively exploring emerging markets across Asia, Africa, and South America.</p>
+                        <h3 data-i18n="market_card1_title">Target Markets</h3>
+                        <p style="line-height: 1.6;" data-i18n="market_card1_desc">We focus on the UK, European Union, and India, while actively exploring emerging markets across Asia, Africa, and South America.</p>
                     </div>
                     
                     <div class="service-card scroll-reveal" style="transition-delay: 100ms;">
                         <div class="service-icon">
                             <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
                         </div>
-                        <h3>Industries in Focus</h3>
-                        <p style="line-height: 1.6;">Consumer goods, agriculture products, industrial materials, sustainable products, tech accessories, and fashion.</p>
+                        <h3 data-i18n="market_card2_title">Industries in Focus</h3>
+                        <p style="line-height: 1.6;" data-i18n="market_card2_desc">Consumer goods, agriculture products, industrial materials, sustainable products, tech accessories, and fashion.</p>
                     </div>
                 </div>
             </div>
@@ -286,7 +290,7 @@
         <!-- REDESIGNED MEGA FOOTER -->
         <footer class="mega-footer">
             <!-- Fixed background watermark text with metallic shining outline -->
-            <div class="footer-watermark-fixed">HILLHEXO</div>
+            <div class="footer-watermark-fixed" data-i18n="footer_watermark">HILLHEXO</div>
             
             <div class="footer-content-wrapper">
                 <div class="footer-main-grid">
@@ -314,10 +318,10 @@
                     <div class="footer-right-col">
                         <!-- Newsletter Subscription Block -->
                         <div class="footer-subscribe-section">
-                            <p class="subscribe-text">Subscribe to receive our latest updates and insights.</p>
+                            <p class="subscribe-text" data-i18n="footer_subscribe_text">Subscribe to receive our latest updates and insights.</p>
                             <form class="footer-subscribe-form" onsubmit="event.preventDefault();">
                                 <div class="subscribe-input-wrapper">
-                                    <input type="email" placeholder="Enter your email address" required class="subscribe-input">
+                                    <input type="email" placeholder="Enter your email address" required class="subscribe-input" data-i18n-placeholder="footer_subscribe_placeholder">
                                     <button type="submit" class="subscribe-btn" aria-label="Subscribe">
                                         <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -480,15 +484,18 @@
                             e.stopPropagation();
 
                             const selectedLang = opt.getAttribute('data-lang');
-                            document.querySelectorAll('.lang-current').forEach(el => el.textContent = selectedLang);
-
-                            document.querySelectorAll('.lang-option').forEach(o => {
-                                if (o.getAttribute('data-lang') === selectedLang) {
-                                    o.classList.add('active');
-                                } else {
-                                    o.classList.remove('active');
-                                }
-                            });
+                            if (typeof translatePage === 'function') {
+                                translatePage(selectedLang.toLowerCase());
+                            } else {
+                                document.querySelectorAll('.lang-current').forEach(el => el.textContent = selectedLang);
+                                document.querySelectorAll('.lang-option').forEach(o => {
+                                    if (o.getAttribute('data-lang') === selectedLang) {
+                                        o.classList.add('active');
+                                    } else {
+                                        o.classList.remove('active');
+                                    }
+                                });
+                            }
 
                             langSwitcher.classList.remove('open');
                             langBtn.setAttribute('aria-expanded', 'false');

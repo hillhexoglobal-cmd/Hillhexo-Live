@@ -22,6 +22,8 @@
     <!-- Noise & Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+    <!-- Translations Script -->
+    <script src="translations.js"></script>
 </head>
 <body>
     <!-- Premium Logo Intro Preloader -->
@@ -66,10 +68,10 @@
             
             <!-- Center: Capsule Nav Pill -->
             <nav class="nav-capsule">
-                <a href="ai-agency-hero.html">Home</a>
+                <a href="ai-agency-hero.html" data-i18n="nav_home">Home</a>
 
-                <a href="services.html" class="active">Services</a>
-                <a href="contact.html">Contact</a>
+                <a href="services.html" class="active" data-i18n="nav_services">Services</a>
+                <a href="contact.html" data-i18n="nav_contact">Contact</a>
 
 
                 <!-- Mobile Only Language Switcher -->
@@ -88,6 +90,7 @@
                     <div class="lang-dropdown">
                         <a href="#" class="lang-option active" data-lang="EN">English</a>
                         <a href="#" class="lang-option" data-lang="NL">Dutch</a>
+                        <a href="#" class="lang-option" data-lang="DE">German</a>
                     </div>
                 </div>
             </nav>
@@ -110,6 +113,7 @@
                     <div class="lang-dropdown">
                         <a href="#" class="lang-option active" data-lang="EN">English</a>
                         <a href="#" class="lang-option" data-lang="NL">Dutch</a>
+                        <a href="#" class="lang-option" data-lang="DE">German</a>
                     </div>
                 </div>
                 
@@ -125,9 +129,9 @@
     <!-- Page Banner Section (Cohesive with main page) -->
     <section class="page-banner">
         <div class="banner-content">
-            <span class="section-badge scroll-reveal">CORE CAPABILITIES</span>
-            <h1 class="scroll-reveal">OUR <span class="gold-text">SERVICES</span></h1>
-            <p class="description scroll-reveal">We deploy global reach paired with deep, specialized industry vertical expertise, providing end-to-end support, inside dealer brokerage, and direct dealer brand ownership.</p>
+            <span class="section-badge scroll-reveal" data-i18n="services_banner_badge">CORE CAPABILITIES</span>
+            <h1 class="scroll-reveal" data-i18n-html="services_banner_title">OUR <span class="gold-text">SERVICES</span></h1>
+            <p class="description scroll-reveal" data-i18n="services_banner_desc">We deploy global reach paired with deep, specialized industry vertical expertise, providing end-to-end support, inside dealer brokerage, and direct dealer brand ownership.</p>
         </div>
     </section>
 
@@ -138,9 +142,9 @@
         <section id="services" class="mid-section section-light">
             <div class="section-container">
                 <div class="section-header-modern scroll-reveal">
-                    <span class="section-badge">WHAT WE DO</span>
-                    <h2>Core Business Models</h2>
-                    <p class="subtitle">We operate through three distinct, powerful models to maximize global trade potential.</p>
+                    <span class="section-badge" data-i18n="services_section1_badge">WHAT WE DO</span>
+                    <h2 data-i18n="services_section1_title">Core Business Models</h2>
+                    <p class="subtitle" data-i18n="services_section1_desc">We operate through three distinct, powerful models to maximize global trade potential.</p>
                 </div>
 
                 <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
@@ -151,13 +155,13 @@
                                 <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" class="icon-svg"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
                             </div>
                         </div>
-                        <h3>Support Services</h3>
-                        <p style="margin-bottom: 1rem;">Export/Import Assistance for registered companies and individual traders.</p>
+                        <h3 data-i18n="services_card1_title">Support Services</h3>
+                        <p style="margin-bottom: 1rem;" data-i18n="services_card1_desc">Export/Import Assistance for registered companies and individual traders.</p>
                         <ul class="services-bullets">
-                            <li>End-to-end logistics & customs</li>
-                            <li>Supplier/buyer coordination</li>
-                            <li>UK/EU/IND compliance</li>
-                            <li>Warehousing & distribution</li>
+                            <li data-i18n="services_card1_bullet1">End-to-end logistics & customs</li>
+                            <li data-i18n="services_card1_bullet2">Supplier/buyer coordination</li>
+                            <li data-i18n="services_card1_bullet3">UK/EU/IND compliance</li>
+                            <li data-i18n="services_card1_bullet4">Warehousing & distribution</li>
                         </ul>
                     </div>
 
@@ -168,13 +172,13 @@
                                 <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" class="icon-svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                             </div>
                         </div>
-                        <h3>Inside Dealer</h3>
-                        <p style="margin-bottom: 1rem;">Market-based Third-Party Trading connecting global suppliers with active buyers.</p>
+                        <h3 data-i18n="services_card2_title">Inside Dealer</h3>
+                        <p style="margin-bottom: 1rem;" data-i18n="services_card2_desc">Market-based Third-Party Trading connecting global suppliers with active buyers.</p>
                         <ul class="services-bullets">
-                            <li>Global market research</li>
-                            <li>Product sourcing & validation</li>
-                            <li>Deal structuring & negotiation</li>
-                            <li>Import/export management</li>
+                            <li data-i18n="services_card2_bullet1">Global market research</li>
+                            <li data-i18n="services_card2_bullet2">Product sourcing & validation</li>
+                            <li data-i18n="services_card2_bullet3">Deal structuring & negotiation</li>
+                            <li data-i18n="services_card2_bullet4">Import/export management</li>
                         </ul>
                     </div>
 
@@ -185,13 +189,13 @@
                                 <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" class="icon-svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
                             </div>
                         </div>
-                        <h3>Direct Dealer</h3>
-                        <p style="margin-bottom: 1rem;">Brand Ownership and Market Creation for high-potential, niche products.</p>
+                        <h3 data-i18n="services_card3_title">Direct Dealer</h3>
+                        <p style="margin-bottom: 1rem;" data-i18n="services_card3_desc">Brand Ownership and Market Creation for high-potential, niche products.</p>
                         <ul class="services-bullets">
-                            <li>Select high-potential products</li>
-                            <li>Private-label & rebranding</li>
-                            <li>Market presence in UK/EU/IND</li>
-                            <li>Full supply chain ownership</li>
+                            <li data-i18n="services_card3_bullet1">Select high-potential products</li>
+                            <li data-i18n="services_card3_bullet2">Private-label & rebranding</li>
+                            <li data-i18n="services_card3_bullet3">Market presence in UK/EU/IND</li>
+                            <li data-i18n="services_card3_bullet4">Full supply chain ownership</li>
                         </ul>
                     </div>
                 </div>
@@ -204,9 +208,9 @@
                 <section class="mid-section section-dark" style="width: 100%; border-top: none; padding: 0;">
                     <div class="section-container">
                         <div class="section-header-modern scroll-reveal" style="margin-bottom: 1.5rem;">
-                            <span class="section-badge">OUR PROCESS</span>
-                            <h2>Operational Workflow</h2>
-                            <p class="subtitle">Our robust 8-step working protocol guarantees efficiency, quality, and market readiness from concept to distribution.</p>
+                            <span class="section-badge" data-i18n="services_section2_badge">OUR PROCESS</span>
+                            <h2 data-i18n="services_section2_title">Operational Workflow</h2>
+                            <p class="subtitle" data-i18n="services_section2_desc">Our robust 8-step working protocol guarantees efficiency, quality, and market readiness from concept to distribution.</p>
                         </div>
 
                         <div class="horizontal-timeline-container scroll-reveal">
@@ -223,8 +227,8 @@
                                         <span class="step-number">01</span>
                                     </div>
                                     <div class="step-content">
-                                        <h3>Identification</h3>
-                                        <p>Research trends, find high-demand gaps, and evaluate scalability.</p>
+                                        <h3 data-i18n="services_step1_title">Identification</h3>
+                                        <p data-i18n="services_step1_desc">Research trends, find high-demand gaps, and evaluate scalability.</p>
                                     </div>
                                 </div>
 
@@ -237,8 +241,8 @@
                                         <span class="step-number">02</span>
                                     </div>
                                     <div class="step-content">
-                                        <h3>Verification</h3>
-                                        <p>Validate supplier credibility, capacity, and strict quality standards.</p>
+                                        <h3 data-i18n="services_step2_title">Verification</h3>
+                                        <p data-i18n="services_step2_desc">Validate supplier credibility, capacity, and strict quality standards.</p>
                                     </div>
                                 </div>
 
@@ -251,8 +255,8 @@
                                         <span class="step-number">03</span>
                                     </div>
                                     <div class="step-content">
-                                        <h3>Market Validation</h3>
-                                        <p>Identify target buyers, conduct demand testing, and analyze competition.</p>
+                                        <h3 data-i18n="services_step3_title">Market Validation</h3>
+                                        <p data-i18n="services_step3_desc">Identify target buyers, conduct demand testing, and analyze competition.</p>
                                     </div>
                                 </div>
 
@@ -265,8 +269,8 @@
                                         <span class="step-number">04</span>
                                     </div>
                                     <div class="step-content">
-                                        <h3>Model Decision</h3>
-                                        <p>Select the best path: Support Service, Inside Dealer, or Direct Dealer.</p>
+                                        <h3 data-i18n="services_step4_title">Model Decision</h3>
+                                        <p data-i18n="services_step4_desc">Select the best path: Support Service, Inside Dealer, or Direct Dealer.</p>
                                     </div>
                                 </div>
 
@@ -279,8 +283,8 @@
                                         <span class="step-number">05</span>
                                     </div>
                                     <div class="step-content">
-                                        <h3>Deal Structuring</h3>
-                                        <p>Finalize pricing strategy, contracts, agreements, and payment terms.</p>
+                                        <h3 data-i18n="services_step5_title">Deal Structuring</h3>
+                                        <p data-i18n="services_step5_desc">Finalize pricing strategy, contracts, agreements, and payment terms.</p>
                                     </div>
                                 </div>
 
@@ -293,8 +297,8 @@
                                         <span class="step-number">06</span>
                                     </div>
                                     <div class="step-content">
-                                        <h3>Logistics Execution</h3>
-                                        <p>Arrange shipping, customs clearance, and delivery to warehouse.</p>
+                                        <h3 data-i18n="services_step6_title">Logistics Execution</h3>
+                                        <p data-i18n="services_step6_desc">Arrange shipping, customs clearance, and delivery to warehouse.</p>
                                     </div>
                                 </div>
 
@@ -307,8 +311,8 @@
                                         <span class="step-number">07</span>
                                     </div>
                                     <div class="step-content">
-                                        <h3>Sales & Distribution</h3>
-                                        <p>Deliver directly to buyers, expand market reach, and scale volumes.</p>
+                                        <h3 data-i18n="services_step7_title">Sales & Distribution</h3>
+                                        <p data-i18n="services_step7_desc">Deliver directly to buyers, expand market reach, and scale volumes.</p>
                                     </div>
                                 </div>
 
@@ -321,8 +325,8 @@
                                         <span class="step-number">08</span>
                                     </div>
                                     <div class="step-content">
-                                        <h3>Brand Development</h3>
-                                        <p>(Direct Dealer) Create identity, packaging, and marketing campaigns.</p>
+                                        <h3 data-i18n="services_step8_title">Brand Development</h3>
+                                        <p data-i18n="services_step8_desc">(Direct Dealer) Create identity, packaging, and marketing campaigns.</p>
                                     </div>
                                 </div>
                             </div>
@@ -337,7 +341,7 @@
         <!-- REDESIGNED MEGA FOOTER -->
         <footer class="mega-footer">
             <!-- Fixed background watermark text with metallic shining outline -->
-            <div class="footer-watermark-fixed">HILLHEXO</div>
+            <div class="footer-watermark-fixed" data-i18n="footer_watermark">HILLHEXO</div>
             
             <div class="footer-content-wrapper">
                 <div class="footer-main-grid">
@@ -365,10 +369,10 @@
                     <div class="footer-right-col">
                         <!-- Newsletter Subscription Block -->
                         <div class="footer-subscribe-section">
-                            <p class="subscribe-text">Subscribe to receive our latest updates and insights.</p>
+                            <p class="subscribe-text" data-i18n="footer_subscribe_text">Subscribe to receive our latest updates and insights.</p>
                             <form class="footer-subscribe-form" onsubmit="event.preventDefault();">
                                 <div class="subscribe-input-wrapper">
-                                    <input type="email" placeholder="Enter your email address" required class="subscribe-input">
+                                    <input type="email" placeholder="Enter your email address" required class="subscribe-input" data-i18n-placeholder="footer_subscribe_placeholder">
                                     <button type="submit" class="subscribe-btn" aria-label="Subscribe">
                                         <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -388,6 +392,7 @@
     <script src="truck-data.js"></script>
     <script src="globe-footer.js"></script>
     <script src="ai-agency-hero.js"></script>
+    <script src="translations.js"></script>
 
     <script>
         // Preloader reveal
@@ -468,15 +473,18 @@
                             e.stopPropagation();
 
                             const selectedLang = opt.getAttribute('data-lang');
-                            document.querySelectorAll('.lang-current').forEach(el => el.textContent = selectedLang);
-
-                            document.querySelectorAll('.lang-option').forEach(o => {
-                                if (o.getAttribute('data-lang') === selectedLang) {
-                                    o.classList.add('active');
-                                } else {
-                                    o.classList.remove('active');
-                                }
-                            });
+                            if (typeof translatePage === 'function') {
+                                translatePage(selectedLang.toLowerCase());
+                            } else {
+                                document.querySelectorAll('.lang-current').forEach(el => el.textContent = selectedLang);
+                                document.querySelectorAll('.lang-option').forEach(o => {
+                                    if (o.getAttribute('data-lang') === selectedLang) {
+                                        o.classList.add('active');
+                                    } else {
+                                        o.classList.remove('active');
+                                    }
+                                });
+                            }
 
                             langSwitcher.classList.remove('open');
                             langBtn.setAttribute('aria-expanded', 'false');
