@@ -488,6 +488,87 @@
                     if (langBtn) langBtn.setAttribute('aria-expanded', 'false');
                 });
             });
+
+            // Horizontal workflow auto-scroll functionality
+            const timelineContainer = document.querySelector('.horizontal-timeline-container');
+            const timelineTrack = document.querySelector('.horizontal-timeline-track');
+            if (timelineContainer && timelineTrack) {
+                const stepCards = timelineTrack.querySelectorAll('.horizontal-step-card');
+                let currentIndex = 0;
+                let autoScrollInterval = null;
+                let isHovered = false;
+
+                const scrollToCard = (index) => {
+                    if (window.innerWidth <= 768) return; // Disable vertical auto-scroll on mobile
+
+                    const card = stepCards[index];
+                    if (!card) return;
+
+                    const containerWidth = timelineContainer.offsetWidth;
+                    const cardWidth = card.offsetWidth;
+                    const cardLeft = card.offsetLeft;
+
+                    // Center the card in the viewport
+                    const targetScrollLeft = cardLeft - (containerWidth / 2) + (cardWidth / 2);
+                    
+                    timelineContainer.scrollTo({
+                        left: targetScrollLeft,
+                        behavior: 'smooth'
+                    });
+
+                    // Update active styling
+                    stepCards.forEach((c, idx) => {
+                        if (idx === index) {
+                            c.classList.add('active-step');
+                        } else {
+                            c.classList.remove('active-step');
+                        }
+                    });
+                };
+
+                const startAutoScroll = () => {
+                    stopAutoScroll();
+                    autoScrollInterval = setInterval(() => {
+                        if (!isHovered && window.innerWidth > 768) {
+                            currentIndex = (currentIndex + 1) % stepCards.length;
+                            scrollToCard(currentIndex);
+                        }
+                    }, 3000);
+                };
+
+                const stopAutoScroll = () => {
+                    if (autoScrollInterval) {
+                        clearInterval(autoScrollInterval);
+                        autoScrollInterval = null;
+                    }
+                };
+
+                timelineContainer.addEventListener('mouseenter', () => {
+                    isHovered = true;
+                });
+
+                timelineContainer.addEventListener('mouseleave', () => {
+                    isHovered = false;
+                });
+
+                // Init auto-scroll and highlight first card
+                setTimeout(() => {
+                    if (window.innerWidth > 768) {
+                        scrollToCard(0);
+                    }
+                    startAutoScroll();
+                }, 500);
+
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth <= 768) {
+                        stopAutoScroll();
+                        timelineContainer.scrollTo({ left: 0 });
+                        stepCards.forEach(c => c.classList.remove('active-step'));
+                    } else {
+                        startAutoScroll();
+                    }
+                });
+            }
         });
     </script>
     <style>
@@ -565,29 +646,13 @@
     /* Dark Theme Operational Workflow horizontal timeline styles */
     .horizontal-timeline-container {
         width: 100%;
-        overflow-x: auto;
+        overflow-x: hidden;
         overflow-y: hidden;
         padding: 2.5rem 0 1rem 0;
         scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
         display: block;
     }
-    /* Custom premium horizontal scrollbar */
-    .horizontal-timeline-container::-webkit-scrollbar {
-        height: 6px;
-    }
-    .horizontal-timeline-container::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 10px;
-    }
-    .horizontal-timeline-container::-webkit-scrollbar-thumb {
-        background: rgba(45, 107, 239, 0.3);
-        border-radius: 10px;
-        transition: background 0.3s ease;
-    }
-    .horizontal-timeline-container::-webkit-scrollbar-thumb:hover {
-        background: rgba(45, 107, 239, 0.6);
-    }
+
 
     .horizontal-timeline-track {
         display: flex;
@@ -704,6 +769,25 @@
     .horizontal-step-card:hover .step-number {
         border-color: #2d6bef;
         box-shadow: 0 0 10px rgba(45, 107, 239, 0.3);
+    }
+
+    /* Active step styles for auto-scroll focus */
+    .horizontal-step-card.active-step .step-node {
+        background: linear-gradient(135deg, #0a1c3f 0%, #1d438a 100%);
+        border-color: #2d6bef;
+        box-shadow: 0 0 25px rgba(45, 107, 239, 0.5);
+        transform: scale(1.08);
+    }
+    .horizontal-step-card.active-step .step-node-icon svg {
+        stroke: #ffffff;
+    }
+    .horizontal-step-card.active-step .step-content {
+        background: rgba(15, 23, 42, 0.6);
+        border-color: rgba(29, 67, 138, 0.4);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+    .horizontal-step-card.active-step .step-number {
+        border-color: #2d6bef;
     }
 
     /* Mobile Responsive Timeline Adaptation */
