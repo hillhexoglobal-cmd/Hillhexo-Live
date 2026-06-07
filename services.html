@@ -644,11 +644,15 @@
         top: 0;
         height: 100vh;
         display: flex;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
         overflow: hidden;
         width: 100%;
         background: #060a15;
         z-index: 10;
+        box-sizing: border-box;
+        padding-top: 90px; /* Offset for fixed header navigation bar */
     }
     .horizontal-timeline-container {
         width: 100%;
