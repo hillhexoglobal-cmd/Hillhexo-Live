@@ -474,50 +474,17 @@
         transform: rotate(90deg);
     }
 
-    /* Contact Page background and header overrides */
+    /* Contact Page background and layout overrides */
     body.contact-page {
         background-color: #ffffff !important;
     }
     .contact-page #canvas-container {
         background: #ffffff !important;
     }
-    .contact-page .main-header {
-        padding: 0.8rem 4rem !important;
-        background: rgba(255, 255, 255, 0.9) !important;
-        backdrop-filter: blur(15px) !important;
-        -webkit-backdrop-filter: blur(15px) !important;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
-    }
-    .contact-page .main-header .logo-text {
-        color: #0f172a !important;
-    }
-    .contact-page .main-header .logo-text .gold-text {
-        color: #2d6bef !important;
-    }
-    .contact-page .main-header .nav-capsule {
-        background: rgba(15, 23, 42, 0.08) !important;
-    }
-    .contact-page .main-header .nav-capsule a {
-        color: #0f172a !important;
-    }
-    .contact-page .main-header .nav-capsule a.active {
-        background: #ffffff !important;
-        color: #1d438a !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
-    }
-    .contact-page .main-header .btn-lang {
-        color: #0f172a !important;
-        border-color: rgba(15, 23, 42, 0.15) !important;
-    }
-    .contact-page .main-header .hamburger-line {
-        background-color: #0f172a !important;
-    }
-    .contact-page .page-banner .banner-content h1 {
-        color: #0f172a !important;
-    }
-    .contact-page .page-banner .banner-content .description {
-        color: #555555 !important;
+    
+    /* Keep page banner dark to ensure white typography and transparent navigation readability */
+    .contact-page .page-banner {
+        background: #02050f !important;
     }
     
     /* Make contact section transparent so globe is visible throughout */
