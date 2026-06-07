@@ -513,7 +513,7 @@
                 const handleStickyScroll = () => {
                     if (window.innerWidth <= 768) {
                         // Reset properties on mobile layout
-                        timelineContainer.scrollLeft = 0;
+                        timelineTrack.style.transform = 'none';
                         stepCards.forEach(c => c.classList.remove('active-step'));
                         return;
                     }
@@ -532,15 +532,16 @@
                     pct = Math.max(0, Math.min(1, pct));
 
                     // Get the maximum scrollable width of the timeline container
-                    const maxHorizontalScroll = timelineContainer.scrollWidth - timelineContainer.clientWidth;
+                    const maxHorizontalScroll = timelineTrack.offsetWidth - timelineContainer.clientWidth;
 
-                    // Translate vertical scroll progress into horizontal scroll progress
-                    timelineContainer.scrollLeft = maxHorizontalScroll * pct;
+                    // Translate vertical scroll progress into horizontal translation of the track
+                    const translateX = -maxHorizontalScroll * pct;
+                    timelineTrack.style.transform = `translate3d(${translateX}px, 0, 0)`;
 
                     // Find which step card is closest to the horizontal center of the viewport
                     let closestIndex = 0;
                     let minDistance = Infinity;
-                    const containerCenter = timelineContainer.scrollLeft + (timelineContainer.clientWidth / 2);
+                    const containerCenter = -translateX + (timelineContainer.clientWidth / 2);
 
                     stepCards.forEach((card, idx) => {
                         const cardCenter = card.offsetLeft + (card.offsetWidth / 2);
@@ -565,7 +566,9 @@
                 window.addEventListener('scroll', handleStickyScroll);
                 window.addEventListener('resize', handleStickyScroll);
 
-                // Initial calculation after preloader fades out
+                // Initial calculation triggers
+                handleStickyScroll();
+                setTimeout(handleStickyScroll, 100);
                 setTimeout(handleStickyScroll, 4800);
             }
         });
@@ -644,6 +647,8 @@
 
     /* Sticky Horizontal Scroll Container Styles */
     .sticky-scroll-wrapper {
+        --card-width: clamp(300px, 28vw, 420px);
+        --card-gap: 3.5vw;
         position: relative;
         height: 350vh; /* Determines the vertical scrolling length for the horizontal animation */
     }
@@ -680,17 +685,20 @@
 
     .horizontal-timeline-track {
         display: flex;
-        gap: 2.5rem;
-        padding: 1.5rem 2rem 2.5rem 2rem;
+        gap: var(--card-gap);
+        padding: 1.5rem calc(50vw - var(--card-width) / 2) 2.5rem calc(50vw - var(--card-width) / 2);
         min-width: max-content;
         position: relative;
+        /* Smooth hardware-accelerated transition */
+        transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: transform;
     }
 
     .timeline-horizontal-line {
         position: absolute;
         top: 45px; /* Aligned with node centers */
-        left: 0;
-        right: 0;
+        left: 50vw;
+        right: 50vw;
         height: 2px;
         background: linear-gradient(to right, #2d6bef, rgba(45, 107, 239, 0.15));
         opacity: 0.3;
@@ -698,7 +706,7 @@
     }
 
     .horizontal-step-card {
-        width: 280px;
+        width: var(--card-width);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -840,14 +848,14 @@
             padding: 1rem 0 0.5rem 0 !important;
         }
         .horizontal-timeline-track {
-            padding: 1rem 2rem 1.8rem 2rem !important;
+            padding: 1rem calc(50vw - var(--card-width) / 2) 1.8rem calc(50vw - var(--card-width) / 2) !important;
             gap: 1.8rem !important;
         }
         .timeline-horizontal-line {
             top: 41px !important;
         }
         .horizontal-step-card {
-            width: 250px !important;
+            width: var(--card-width) !important;
         }
         .step-node {
             width: 50px !important;
@@ -902,14 +910,14 @@
             padding: 0.5rem 0 !important;
         }
         .horizontal-timeline-track {
-            padding: 0.5rem 2rem 1.2rem 2rem !important;
+            padding: 0.5rem calc(50vw - var(--card-width) / 2) 1.2rem calc(50vw - var(--card-width) / 2) !important;
             gap: 1.5rem !important;
         }
         .timeline-horizontal-line {
             top: 32px !important;
         }
         .horizontal-step-card {
-            width: 220px !important;
+            width: var(--card-width) !important;
         }
         .step-node {
             width: 44px !important;
