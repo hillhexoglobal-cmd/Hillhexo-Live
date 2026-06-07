@@ -23,7 +23,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
 </head>
-<body>
+<body class="contact-page">
     <!-- Premium Logo Intro Preloader -->
     <div id="intro-preloader">
         <div class="preloader-columns">
@@ -256,6 +256,7 @@
 
     <script src="map-data.js"></script>
     <script src="truck-data.js"></script>
+    <script src="contact-globe.js"></script>
     <script src="globe-footer.js"></script>
     <script src="ai-agency-hero.js"></script>
 
@@ -471,6 +472,65 @@
         background: #e2e8f0;
         color: #0f172a;
         transform: rotate(90deg);
+    }
+
+    /* Contact Page background and header overrides */
+    body.contact-page {
+        background-color: #ffffff !important;
+    }
+    .contact-page #canvas-container {
+        background: #ffffff !important;
+    }
+    .contact-page .main-header {
+        padding: 0.8rem 4rem !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        backdrop-filter: blur(15px) !important;
+        -webkit-backdrop-filter: blur(15px) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    }
+    .contact-page .main-header .logo-text {
+        color: #0f172a !important;
+    }
+    .contact-page .main-header .logo-text .gold-text {
+        color: #2d6bef !important;
+    }
+    .contact-page .main-header .nav-capsule {
+        background: rgba(15, 23, 42, 0.08) !important;
+    }
+    .contact-page .main-header .nav-capsule a {
+        color: #0f172a !important;
+    }
+    .contact-page .main-header .nav-capsule a.active {
+        background: #ffffff !important;
+        color: #1d438a !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    }
+    .contact-page .main-header .btn-lang {
+        color: #0f172a !important;
+        border-color: rgba(15, 23, 42, 0.15) !important;
+    }
+    .contact-page .main-header .hamburger-line {
+        background-color: #0f172a !important;
+    }
+    .contact-page .page-banner .banner-content h1 {
+        color: #0f172a !important;
+    }
+    .contact-page .page-banner .banner-content .description {
+        color: #555555 !important;
+    }
+    .contact-page .contact-section {
+        background: transparent !important;
+        border-top: none !important;
+    }
+    .contact-page .dark-overlay {
+        display: none !important;
+    }
+    .contact-page .premium-form {
+        background: rgba(255, 255, 255, 0.85) !important;
+        backdrop-filter: blur(15px) !important;
+        -webkit-backdrop-filter: blur(15px) !important;
+        border: 1px solid rgba(29, 67, 138, 0.08) !important;
     }
     </style>
     <!-- Contact Modal -->

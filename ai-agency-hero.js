@@ -224,6 +224,9 @@ document.addEventListener('click', (e) => {
     }
 
     function init() {
+        if (document.body.classList.contains('contact-page')) {
+            return;
+        }
         clock = new THREE.Clock();
         
         // SimplexNoise v2 instantiation:
