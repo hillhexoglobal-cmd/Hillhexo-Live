@@ -503,8 +503,8 @@
                 const stepCards = timelineTrack.querySelectorAll('.horizontal-step-card');
 
                 const handleStickyScroll = () => {
-                    if (window.innerWidth <= 768 || window.innerHeight < 600) {
-                        // Reset properties on mobile or short height layouts
+                    if (window.innerWidth <= 768) {
+                        // Reset properties on mobile layout
                         timelineContainer.scrollLeft = 0;
                         stepCards.forEach(c => c.classList.remove('active-step'));
                         return;
@@ -652,8 +652,8 @@
         background: #060a15;
         z-index: 10;
         box-sizing: border-box;
-        padding-top: 130px; /* Generous top spacing, accounts for header navigation bar height */
-        padding-bottom: 80px; /* Generous bottom spacing */
+        padding-top: 140px; /* Generous top spacing, accounts for header navigation bar height */
+        padding-bottom: 90px; /* Generous bottom spacing */
     }
     .horizontal-timeline-container {
         width: 100%;
@@ -932,7 +932,7 @@
     }
 
     /* Mobile Responsive Timeline Adaptation */
-    @media (max-width: 768px), (max-height: 600px) {
+    @media (max-width: 768px) {
         .sticky-scroll-wrapper {
             height: auto !important;
         }
