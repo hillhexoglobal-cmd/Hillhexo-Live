@@ -824,6 +824,14 @@ body::after {
     margin: 0.5rem auto 0 auto;
 }
 
+.section-dark .section-badge {
+    color: #D4AF37;
+}
+
+.section-dark .section-badge::after {
+    background: #D4AF37;
+}
+
 .section-header-modern h2 {
     font-size: 2.8rem;
     font-weight: 800;
