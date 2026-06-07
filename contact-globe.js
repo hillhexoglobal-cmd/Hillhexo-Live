@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Check if we are on the contact page
+    // Only run this script on the contact page
     if (!document.body.classList.contains('contact-page')) return;
 
     const canvas = document.getElementById('webglCanvas');
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const scene = new THREE.Scene();
     
-    // Set up camera
+    // Perspective Camera setup
     const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 14;
 
@@ -19,17 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
     scene.add(group);
     
     // Tilt the globe so northern hemisphere is slightly more visible
-    group.rotation.x = 0.45;
-    group.rotation.y = -0.6;
+    group.rotation.x = 0.4;
+    group.rotation.y = -0.5;
 
-    // Shift the globe slightly to the right on desktop for layout balance
+    // Shift the globe to the right on desktop to frame the left-aligned content nicely
     function updateGlobePosition() {
         if (window.innerWidth > 900) {
             group.position.x = 2.2;
-            group.position.y = -0.4;
         } else {
             group.position.x = 0;
-            group.position.y = -0.8; // Move it down a bit on mobile to sit behind forms
         }
     }
     updateGlobePosition();
@@ -39,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         img.onload = () => {
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
-            const maxW = 1200;
+            const maxW = 1200; // Map resolution
             const ratio = img.height / img.width;
             canvas.width = maxW;
             canvas.height = maxW * ratio;
@@ -106,9 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 posArray[i*3+1] = p.y;
                 posArray[i*3+2] = p.z;
                 
-                // Slate gray, light gray, and blue dot mix matching user reference
+                // Mix of slate-blue, dark blue, and light gray dots matching reference colors
                 const r = Math.random();
-                const color = new THREE.Color(r > 0.85 ? 0x1d438a : (r > 0.4 ? 0x64748b : 0xcbd5e1));
+                const color = new THREE.Color(r > 0.85 ? 0x1d438a : (r > 0.45 ? 0x64748b : 0x94a3b8));
                 colArray[i*3] = color.r;
                 colArray[i*3+1] = color.g;
                 colArray[i*3+2] = color.b;
@@ -118,10 +116,10 @@ document.addEventListener('DOMContentLoaded', () => {
             pointsGeo.setAttribute('color', new THREE.BufferAttribute(colArray, 3));
 
             const pointsMat = new THREE.PointsMaterial({
-                size: 0.05,
+                size: 0.045,
                 vertexColors: true,
                 transparent: true,
-                opacity: 0.8,
+                opacity: 0.75,
                 blending: THREE.NormalBlending,
                 depthWrite: false
             });
@@ -129,8 +127,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const pointCloud = new THREE.Points(pointsGeo, pointsMat);
             group.add(pointCloud);
 
-            // Halo (Subtle blue glow)
-            const haloGeo = new THREE.SphereGeometry(5.15, 32, 32);
+            // Halo glow effect
+            const haloGeo = new THREE.SphereGeometry(5.12, 32, 32);
             const haloMat = new THREE.MeshBasicMaterial({
                 color: 0x1d438a,
                 transparent: true,
@@ -141,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const halo = new THREE.Mesh(haloGeo, haloMat);
             group.add(halo);
 
-            // City Nodes
+            // Cities
             const cities = [
                 { lat: 40.7, lon: -74, color: 0x1d438a }, // NYC
                 { lat: 51.5, lon: -0.1, color: 0x64748b }, // London
@@ -164,20 +162,20 @@ document.addEventListener('DOMContentLoaded', () => {
             cities.forEach(city => {
                 const pos = getCartesian(city.lat, city.lon, 5.0);
                 const nodeMat = new THREE.MeshBasicMaterial({ color: city.color });
-                const node = new THREE.Mesh(new THREE.SphereGeometry(0.12, 16, 16), nodeMat);
+                const node = new THREE.Mesh(new THREE.SphereGeometry(0.1, 16, 16), nodeMat);
                 node.position.copy(pos);
                 group.add(node);
                 nodes.push(pos);
             });
 
-            // Arcs (Connection lines)
+            // Connection Arcs
             const pairs = [[0,1], [1,2], [0,3], [1,4]]; 
             pairs.forEach(pair => {
                 const p1 = nodes[pair[0]];
                 const p2 = nodes[pair[1]];
                 
                 const distance = p1.distanceTo(p2);
-                const mid = p1.clone().lerp(p2, 0.5).normalize().multiplyScalar(5.0 + distance * 0.4);
+                const mid = p1.clone().lerp(p2, 0.5).normalize().multiplyScalar(5.0 + distance * 0.35);
                 
                 const curve = new THREE.QuadraticBezierCurve3(p1, mid, p2);
                 const curvePoints = curve.getPoints(50);
@@ -187,9 +185,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 const lineMat = new THREE.LineBasicMaterial({ 
                     color: cities[pair[1]].color, 
-                    linewidth: 2.5,
+                    linewidth: 2,
                     transparent: true,
-                    opacity: 0.55,
+                    opacity: 0.45,
                     blending: THREE.NormalBlending
                 });
                 const line = new THREE.Line(lineGeo, lineMat);
@@ -197,7 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 arcs.push(lineGeo);
             });
 
-            // Animation Loop
             let time = 0;
             const animate = function () {
                 requestAnimationFrame(animate);
@@ -205,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 group.rotation.y = time * 0.05;
 
-                // Animate connection arcs
+                // Gradually reveal the arcs
                 if (arcDrawProgress < 50) {
                     arcDrawProgress += 0.25;
                     arcs.forEach(arc => arc.setDrawRange(0, Math.floor(arcDrawProgress)));
@@ -217,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Handle resizing
+    // Window resize handler
     window.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();

@@ -519,18 +519,31 @@
     .contact-page .page-banner .banner-content .description {
         color: #555555 !important;
     }
+    
+    /* Make contact section transparent so globe is visible throughout */
     .contact-page .contact-section {
         background: transparent !important;
         border-top: none !important;
+        box-shadow: none !important;
     }
     .contact-page .dark-overlay {
         display: none !important;
     }
-    .contact-page .premium-form {
-        background: rgba(255, 255, 255, 0.85) !important;
+
+    /* Make left section cards and form glassmorphic */
+    .contact-page .info-card {
+        background: rgba(255, 255, 255, 0.75) !important;
         backdrop-filter: blur(15px) !important;
         -webkit-backdrop-filter: blur(15px) !important;
         border: 1px solid rgba(29, 67, 138, 0.08) !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03) !important;
+    }
+    .contact-page .premium-form {
+        background: rgba(255, 255, 255, 0.75) !important;
+        backdrop-filter: blur(15px) !important;
+        -webkit-backdrop-filter: blur(15px) !important;
+        border: 1px solid rgba(29, 67, 138, 0.08) !important;
+        box-shadow: 0 8px 40px rgba(29, 67, 138, 0.06) !important;
     }
     </style>
     <!-- Contact Modal -->
