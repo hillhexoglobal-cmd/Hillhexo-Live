@@ -2150,7 +2150,7 @@ body::after {
 /* Fixed Background Watermark with Outline and Metallic Shine */
 .footer-watermark-fixed {
     position: absolute;
-    bottom: -15px;
+    bottom: -80px;
     left: 50%;
     transform: translateX(-50%);
     font-size: clamp(80px, 16vw, 240px);
