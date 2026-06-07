@@ -207,7 +207,7 @@
             <div class="sticky-scroll-content">
                 <section class="mid-section section-dark" style="width: 100%; border-top: none; padding: 0;">
                     <div class="section-container">
-                        <div class="section-header-modern scroll-reveal" style="margin-bottom: 1.5rem;">
+                        <div class="section-header-modern scroll-reveal" style="margin-bottom: 4rem;">
                             <span class="section-badge" data-i18n="services_section2_badge">OUR PROCESS</span>
                             <h2 data-i18n="services_section2_title">Operational Workflow</h2>
                             <p class="subtitle" data-i18n="services_section2_desc">Our robust 8-step working protocol guarantees efficiency, quality, and market readiness from concept to distribution.</p>
@@ -509,6 +509,54 @@
             
             if (stickyWrapper && stickyContent && timelineContainer && timelineTrack) {
                 const stepCards = timelineTrack.querySelectorAll('.horizontal-step-card');
+                
+                let targetTranslateX = 0;
+                let currentTranslateX = 0;
+                let animationFrameId = null;
+
+                const updateAnimation = () => {
+                    const diff = targetTranslateX - currentTranslateX;
+                    
+                    // Smooth damping / interpolation (lerp factor: 0.08 represents very smooth scrolling weight)
+                    if (Math.abs(diff) < 0.1) {
+                        currentTranslateX = targetTranslateX;
+                        timelineTrack.style.transform = `translate3d(${currentTranslateX}px, 0, 0)`;
+                        updateActiveStep(currentTranslateX);
+                        animationFrameId = null;
+                        return;
+                    }
+                    
+                    currentTranslateX += diff * 0.08;
+                    timelineTrack.style.transform = `translate3d(${currentTranslateX}px, 0, 0)`;
+                    updateActiveStep(currentTranslateX);
+                    
+                    animationFrameId = requestAnimationFrame(updateAnimation);
+                };
+
+                const updateActiveStep = (translateX) => {
+                    // Find which step card is closest to the horizontal center of the viewport
+                    let closestIndex = 0;
+                    let minDistance = Infinity;
+                    const containerCenter = -translateX + (timelineContainer.clientWidth / 2);
+
+                    stepCards.forEach((card, idx) => {
+                        const cardCenter = card.offsetLeft + (card.offsetWidth / 2);
+                        const distance = Math.abs(containerCenter - cardCenter);
+                        if (distance < minDistance) {
+                            minDistance = distance;
+                            closestIndex = idx;
+                        }
+                    });
+
+                    // Highlight the focused active step card
+                    stepCards.forEach((c, idx) => {
+                        if (idx === closestIndex) {
+                            c.classList.add('active-step');
+                        } else {
+                            c.classList.remove('active-step');
+                        }
+                    });
+                };
 
                 const handleStickyScroll = () => {
                     if (window.innerWidth <= 768) {
@@ -534,32 +582,13 @@
                     // Get the maximum scrollable width of the timeline container
                     const maxHorizontalScroll = timelineTrack.offsetWidth - timelineContainer.clientWidth;
 
-                    // Translate vertical scroll progress into horizontal translation of the track
-                    const translateX = -maxHorizontalScroll * pct;
-                    timelineTrack.style.transform = `translate3d(${translateX}px, 0, 0)`;
+                    // Set target for the lerp animation
+                    targetTranslateX = -maxHorizontalScroll * pct;
 
-                    // Find which step card is closest to the horizontal center of the viewport
-                    let closestIndex = 0;
-                    let minDistance = Infinity;
-                    const containerCenter = -translateX + (timelineContainer.clientWidth / 2);
-
-                    stepCards.forEach((card, idx) => {
-                        const cardCenter = card.offsetLeft + (card.offsetWidth / 2);
-                        const distance = Math.abs(containerCenter - cardCenter);
-                        if (distance < minDistance) {
-                            minDistance = distance;
-                            closestIndex = idx;
-                        }
-                    });
-
-                    // Highlight the focused active step card
-                    stepCards.forEach((c, idx) => {
-                        if (idx === closestIndex) {
-                            c.classList.add('active-step');
-                        } else {
-                            c.classList.remove('active-step');
-                        }
-                    });
+                    // Start the loop if not already running
+                    if (!animationFrameId) {
+                        animationFrameId = requestAnimationFrame(updateAnimation);
+                    }
                 };
 
                 // Add scroll and resize event listeners
@@ -689,8 +718,7 @@
         padding: 1.5rem calc(50vw - var(--card-width) / 2) 2.5rem calc(50vw - var(--card-width) / 2);
         min-width: max-content;
         position: relative;
-        /* Smooth hardware-accelerated transition */
-        transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        /* No transition on transform to allow smooth JS-based requestAnimationFrame lerp */
         will-change: transform;
     }
 
@@ -757,9 +785,13 @@
         background: rgba(15, 23, 42, 0.45);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 18px;
-        padding: 1.8rem;
+        padding: 2.2rem 2rem;
         text-align: left;
         width: 100%;
+        min-height: 200px; /* Make boxes height increased standard sizes */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         box-sizing: border-box;
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
@@ -872,7 +904,8 @@
             padding: 1px 6px !important;
         }
         .step-content {
-            padding: 1.2rem 1.4rem !important;
+            padding: 1.5rem 1.6rem !important;
+            min-height: 170px !important;
             border-radius: 14px !important;
         }
         .step-content h3 {
@@ -935,6 +968,7 @@
         }
         .step-content {
             padding: 0.9rem 1.1rem !important;
+            min-height: 140px !important;
             border-radius: 12px !important;
         }
         .step-content h3 {
