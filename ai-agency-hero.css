@@ -382,7 +382,7 @@ body::after {
     display: flex;
     align-items: center;
     gap: 15px;
-    color: #ffaa00;
+    color: #D4AF37;
     font-size: 0.85rem;
     font-weight: 600;
     letter-spacing: 2px;
@@ -392,7 +392,7 @@ body::after {
 .badge .line {
     width: 40px;
     height: 2px;
-    background: #ffaa00;
+    background: #D4AF37;
 }
 
 .hero-content h1 {
