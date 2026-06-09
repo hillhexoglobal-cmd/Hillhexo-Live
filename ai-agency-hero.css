@@ -382,7 +382,7 @@ body::after {
     display: flex;
     align-items: center;
     gap: 15px;
-    color: #D4AF37;
+    color: #2d6bef;
     font-size: 0.85rem;
     font-weight: 600;
     letter-spacing: 2px;
@@ -392,7 +392,7 @@ body::after {
 .badge .line {
     width: 40px;
     height: 2px;
-    background: #D4AF37;
+    background: #2d6bef;
 }
 
 .hero-content h1 {
@@ -825,11 +825,11 @@ body::after {
 }
 
 .section-dark .section-badge {
-    color: #D4AF37;
+    color: #2d6bef;
 }
 
 .section-dark .section-badge::after {
-    background: #D4AF37;
+    background: #2d6bef;
 }
 
 .section-header-modern h2 {
