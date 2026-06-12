@@ -638,10 +638,10 @@ body::after {
 .logistics-marquee {
     width: 100%;
     overflow: hidden;
-    background: #000000 !important;
+    background: #ffffff !important;
     padding: 3rem 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     position: relative;
     z-index: 12;
     display: flex;
@@ -669,7 +669,7 @@ body::after {
     font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(2.5rem, 5.5vw, 5.5rem);
     font-weight: 900;
-    color: #ffffff; /* Bold white letters */
+    color: #000000; /* Bold black letters */
     text-transform: uppercase;
     letter-spacing: -0.02em;
     display: inline-flex;
@@ -679,11 +679,11 @@ body::after {
 .marquee-dot {
     width: 16px;
     height: 16px;
-    background-color: #4e84ff; /* Luxury blue dot */
+    background-color: #1d438a; /* Dark blue dot */
     border-radius: 50%;
     display: inline-block;
     margin: 0;
-    box-shadow: 0 0 10px rgba(78, 132, 255, 0.4);
+    box-shadow: none;
     flex-shrink: 0;
 }
 
