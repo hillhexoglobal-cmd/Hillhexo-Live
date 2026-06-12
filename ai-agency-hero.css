@@ -2620,6 +2620,14 @@ canvas#webglCanvas {
     align-items: center;
 }
 
+.banner-content .section-badge {
+    color: #ffffff;
+}
+
+.banner-content .section-badge::after {
+    background: #ffffff;
+}
+
 .banner-content h1 {
     font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(2.5rem, 5vw, 4.5rem);
