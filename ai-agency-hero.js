@@ -788,7 +788,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         if (window.innerWidth > 900) return; // Only on mobile viewports
 
-        const threshold = 15; // px from the bottom
+        const threshold = 3; // tighter threshold (3px from absolute bottom) to prevent early trigger
         const scrollPosition = window.innerHeight + window.scrollY;
         const totalHeight = document.documentElement.scrollHeight;
         const isAtBottom = scrollPosition >= (totalHeight - threshold);
@@ -799,54 +799,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Save state to bypass preloader intro on next page
             sessionStorage.setItem('hillhexo_navigated_internally', 'true');
 
-            // Create premium transition overlay
-            const transitionOverlay = document.createElement('div');
-            transitionOverlay.style.position = 'fixed';
-            transitionOverlay.style.top = '0';
-            transitionOverlay.style.left = '0';
-            transitionOverlay.style.width = '100vw';
-            transitionOverlay.style.height = '100vh';
-            transitionOverlay.style.background = '#060a15';
-            transitionOverlay.style.zIndex = '99999';
-            transitionOverlay.style.opacity = '0';
-            transitionOverlay.style.transition = 'opacity 0.4s ease';
-            transitionOverlay.style.display = 'flex';
-            transitionOverlay.style.flexDirection = 'column';
-            transitionOverlay.style.justifyContent = 'center';
-            transitionOverlay.style.alignItems = 'center';
-            transitionOverlay.style.color = '#ffffff';
-            transitionOverlay.style.fontFamily = "'Outfit', sans-serif";
-            transitionOverlay.style.fontSize = '1.2rem';
-            transitionOverlay.style.letterSpacing = '1px';
-            
-            // Nice rotating spinner inside overlay
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes spinMobile {
-                    0% { transform: rotate(0deg); }
-                    100% { transform: rotate(360deg); }
-                }
-            `;
-            document.head.appendChild(style);
-
-            transitionOverlay.innerHTML = `
-                <div style="text-align: center;">
-                    <div style="border: 3.5px dashed #4e84ff; border-top: 3.5px solid transparent; border-radius: 50%; width: 45px; height: 45px; animation: spinMobile 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite; margin: 0 auto 1.2rem auto; box-shadow: 0 0 15px rgba(78, 132, 255, 0.45);"></div>
-                    <span style="font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em;">Loading next page</span>
-                </div>
-            `;
-            
-            document.body.appendChild(transitionOverlay);
-
-            // Fade in the transition overlay
-            setTimeout(() => {
-                transitionOverlay.style.opacity = '1';
-            }, 50);
-
-            // Navigate after fade-in completes
-            setTimeout(() => {
-                window.location.href = nextPage;
-            }, 500);
+            // Navigate instantly
+            window.location.href = nextPage;
         }
     });
 });
