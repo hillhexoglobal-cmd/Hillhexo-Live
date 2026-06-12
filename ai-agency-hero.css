@@ -3088,9 +3088,7 @@ canvas#webglCanvas {
     }
 
     .hamburger-menu {
-        display: flex;
-        position: relative;
-        z-index: 1010;
+        display: none !important;
     }
 
     .main-header.scrolled .hamburger-menu.active .hamburger-line {
@@ -3214,7 +3212,7 @@ canvas#webglCanvas {
         color: #94a3b8;
     }
 
-    .lang-dropdown {
+    .nav-capsule .lang-dropdown {
         left: 50%;
         transform: translateX(-50%) translateY(-10px);
         right: auto;
@@ -3222,7 +3220,7 @@ canvas#webglCanvas {
         top: auto;
         margin-bottom: 8px;
     }
-    .lang-switcher.open .lang-dropdown {
+    .nav-capsule .lang-switcher.open .lang-dropdown {
         transform: translateX(-50%) translateY(0);
     }
 
