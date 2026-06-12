@@ -396,11 +396,12 @@ body::after {
 }
 
 .hero-content h1 {
-    font-size: clamp(2rem, 3.6vw, 3.2rem); /* Reduced by 30% */
-    font-weight: 900;
-    line-height: 1.25; /* Added vertical breathing room */
-    letter-spacing: -0.015em; /* Relaxed letter spacing */
-    color: #ffffff; /* Make white */
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: #ffffff;
     margin-bottom: 2rem;
     margin-top: 1rem;
 }
