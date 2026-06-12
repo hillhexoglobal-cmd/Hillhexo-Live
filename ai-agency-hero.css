@@ -139,7 +139,7 @@ body::after {
 }
 
 .logo-text .gold-text {
-    color: #2d6bef; /* Vibrant Blue O */
+    color: #4e84ff; /* Vibrant Blue O */
 }
 
 /* Centered Navigation Capsule */
@@ -825,11 +825,11 @@ body::after {
 }
 
 .section-dark .section-badge {
-    color: #2d6bef;
+    color: #4e84ff;
 }
 
 .section-dark .section-badge::after {
-    background: #2d6bef;
+    background: #4e84ff;
 }
 
 .section-header-modern h2 {
@@ -863,7 +863,7 @@ body::after {
 }
 
 .gold-text {
-    color: #2d6bef;
+    color: #4e84ff;
 }
 
 /* --- ABOUT SECTION STYLES --- */

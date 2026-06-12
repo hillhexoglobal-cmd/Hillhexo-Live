@@ -227,6 +227,8 @@ document.addEventListener('click', (e) => {
         if (document.body.classList.contains('contact-page')) {
             return;
         }
+        const canvasEl = document.getElementById('webglCanvas');
+        if (!canvasEl) return;
         clock = new THREE.Clock();
         
         // SimplexNoise v2 instantiation:
