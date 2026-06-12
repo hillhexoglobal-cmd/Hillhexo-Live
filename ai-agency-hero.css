@@ -396,7 +396,7 @@ body::after {
 }
 
 .hero-content h1 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Outfit', sans-serif;
     font-size: clamp(2.2rem, 4vw, 3.6rem);
     font-weight: 800;
     line-height: 1.15;
