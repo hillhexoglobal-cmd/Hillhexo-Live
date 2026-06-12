@@ -805,3 +805,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Intersection Observer to pause/play hero video when in/out of viewport to prevent site slowness
+document.addEventListener('DOMContentLoaded', () => {
+    const heroVideo = document.getElementById('heroVideo');
+    if (heroVideo) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    heroVideo.play().catch(err => {
+                        // Catch error (e.g. browser autoplay restrictions)
+                    });
+                } else {
+                    heroVideo.pause();
+                }
+            });
+        }, {
+            threshold: 0.05
+        });
+        observer.observe(heroVideo);
+    }
+});
+
+
