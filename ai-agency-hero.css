@@ -139,7 +139,7 @@ body::after {
 }
 
 .logo-text .gold-text {
-    color: #4e84ff; /* Vibrant Blue O */
+    color: #1d438a; /* Dark Blue O */
 }
 
 /* Centered Navigation Capsule */
@@ -1967,6 +1967,7 @@ body::after {
 }
 
 .footer-logo h2 span.gold-text {
+    color: #1d438a !important; /* Dark Blue O */
     font-size: 2rem !important;
     vertical-align: baseline !important;
     margin-left: 0 !important;
@@ -2347,6 +2348,10 @@ body::after {
     letter-spacing: 4px;
     margin: 0;
     text-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+}
+
+.preloader-logo-text .gold-text {
+    color: #1d438a !important; /* Dark Blue O */
 }
 
 .preloader-logo-text .gold-dot {
