@@ -89,8 +89,8 @@ const translations = {
         "services_step8_desc": "(Direct Dealer) Create identity, packaging, and marketing campaigns.",
 
         // Homepage
-        "hero_title": "CONNECTING THE WORLD,<br><span class=\"gold-text\">DELIVERING EXCELLENCE</span>",
-        "hero_desc": "End-to-end logistics solutions tailored to your business. Fast, reliable and secure – across the globe.",
+        "hero_title": "Smart Logistics Solutions<br>for Modern Businesses",
+        "hero_desc": '"Deliver. Optimize. Grow." Our logistics solutions help businesses streamline operations, improve efficiency, and enhance customer experiences. From supply chain management to transportation coordination, we provide the tools and support needed to keep your business moving forward in a fast-changing world.',
         "hero_btn_explore": "Explore More",
         "marquee_chain": "Global Supply Chain",
         "marquee_forwarding": "Freight Forwarding",
@@ -99,7 +99,7 @@ const translations = {
         "marquee_cargo": "Ocean & Air Cargo",
         "marquee_nextgen": "Next-Gen Logistics",
         "about_badge": "WHO WE ARE",
-        "about_title": "MISSION <span class=\"gold-text\">&</span> VISION",
+        "about_title": "Mission <span class=\"gold-text\">&</span> Vision",
         "about_subtitle": "Transforming global trade by making high-potential products accessible, scalable, and successful across borders.",
         "about_vision_title": "Our Vision",
         "about_vision_desc": "To become a leading global trade enabler and product development powerhouse connecting emerging products with high-demand markets.",
@@ -212,7 +212,7 @@ const translations = {
         "services_step8_desc": "(Direct Dealer) Creëer identiteit, verpakking en marketingcampagnes.",
 
         // Homepage
-        "hero_title": "DE WERELD VERBINDEN,<br><span class=\"gold-text\">KWALITEIT LEVEREN</span>",
+        "hero_title": "De Wereld Verbinden,<br><span class=\"gold-text\">Kwaliteit Leveren</span>",
         "hero_desc": "End-to-end logistieke oplossingen op maat van uw bedrijf. Snel, betrouwbaar en veilig – over de hele wereld.",
         "hero_btn_explore": "Ontdek Meer",
         "marquee_chain": "Wereldwijde Toeleveringsketen",
@@ -222,7 +222,7 @@ const translations = {
         "marquee_cargo": "Zee- & Luchtvracht",
         "marquee_nextgen": "Volgende Generatie Logistiek",
         "about_badge": "WIE WE ZIJN",
-        "about_title": "MISSIE <span class=\"gold-text\">&</span> VISIE",
+        "about_title": "Missie <span class=\"gold-text\">&</span> Visie",
         "about_subtitle": "Wereldwijde handel transformeren door kansrijke producten toegankelijk, schaalbaar en succesvol over grenzen heen te maken.",
         "about_vision_title": "Onze Visie",
         "about_vision_desc": "Een toonaangevende facilitator van wereldwijde handel en krachtpatser voor productontwikkeling worden die opkomende producten verbindt met markten met een grote vraag.",
@@ -335,7 +335,7 @@ const translations = {
         "services_step8_desc": "(Direct Dealer) Identität, Verpackung und Marketingkampagnen erstellen.",
 
         // Homepage
-        "hero_title": "DIE WELT VERBINDEN,<br><span class=\"gold-text\">EXZELLENZ LIEFERN</span>",
+        "hero_title": "Die Welt Verbinden,<br><span class=\"gold-text\">Exzellenz Liefern</span>",
         "hero_desc": "End-to-End-Logistiklösungen, maßgeschneidert für Ihr Unternehmen. Schnell, zuverlässig und sicher – auf der ganzen Welt.",
         "hero_btn_explore": "Mehr erfahren",
         "marquee_chain": "Globale Lieferkette",
@@ -345,7 +345,7 @@ const translations = {
         "marquee_cargo": "See- & Luftfracht",
         "marquee_nextgen": "Next-Gen Logistik",
         "about_badge": "WER WIR SIND",
-        "about_title": "MISSION <span class=\"gold-text\">&</span> VISION",
+        "about_title": "Mission <span class=\"gold-text\">&</span> Vision",
         "about_subtitle": "Den globalen Handel transformieren, indem vielversprechende Produkte über Grenzen hinweg zugänglich, skalierbar und erfolgreich gemacht werden.",
         "about_vision_title": "Unsere Vision",
         "about_vision_desc": "Ein führender Wegbereiter des globalen Handels und ein Innovationszentrum für Produktentwicklung zu werden, das aufstrebende Produkte mit Märkten mit hoher Nachfrage verbindt.",
